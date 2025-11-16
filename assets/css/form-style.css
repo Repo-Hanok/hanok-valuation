@@ -1,0 +1,638 @@
+/* ===========
+
+   Vars
+
+   =========== */
+
+:root{
+
+  --primary:#0073aa;   /* azul WP */
+
+  --text:#1f2937;
+
+  --muted:#6b7280;
+
+  --border:#e5e7eb;
+
+  --bg:#f8fafc;
+
+  --card:#ffffff;
+
+  --radius:14px;
+
+  --shadow:0 10px 20px rgba(0,0,0,.06);
+
+}
+
+
+
+/* ===========
+
+   Layout base (mantiene tus reglas)
+
+   =========== */
+
+#contenedor_form_nuevo{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:20px;
+
+  margin:0 0;
+
+}
+
+.form-paso, #hanok_ui{ margin:0 2rem; }
+
+
+
+.form-paso, #hanok_procesando_datos{
+
+  min-height:50vh;
+
+  align-content:center;
+
+}
+
+
+
+#form_valoracion_vivienda,
+
+.form-paso{ padding:2rem 0; }
+
+#form_valoracion_vivienda fieldset{ padding-top:0; }
+
+#form_valoracion_vivienda legend{ font-size:20px; }
+
+
+
+#form_valoracion_vivienda fieldset>label{
+
+  padding:5px;
+
+  background-color:#fff;
+
+
+
+}
+
+
+
+/* Fondo y contenedor suave */
+
+#form_valoracion_vivienda{
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+
+  padding:24px;
+
+}
+
+
+
+/* ===========
+
+   Mapa
+
+   =========== */
+
+#mapa_valoracion_vivienda{
+
+  min-height:420px;
+
+  border:1px solid var(--border);
+
+  border-radius:var(--radius);
+
+  background:#eef6fb;
+
+  box-shadow:var(--shadow);
+
+}
+
+
+
+/* ===========
+
+   Inputs & labels
+
+   =========== */
+
+#form_valoracion_vivienda label{
+
+
+
+  color:var(--text);
+
+  font-weight:600;
+
+  margin:14px 0 6px;
+
+}
+
+
+
+#form_valoracion_vivienda input[type="text"],
+
+#form_valoracion_vivienda input[type="email"],
+
+#form_valoracion_vivienda input[type="number"],
+
+#form_valoracion_vivienda input[type="tel"],
+
+#form_valoracion_vivienda input[type="checkbox"]{
+
+  font:inherit;
+
+}
+
+
+
+#form_valoracion_vivienda input[type="text"],
+
+#form_valoracion_vivienda input[type="email"],
+
+#form_valoracion_vivienda input[type="number"],
+
+#form_valoracion_vivienda input[type="tel"]{
+
+  width:100%;
+
+  padding:12px 14px;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  outline:none;
+
+  background:#fff;
+
+  transition:border-color .15s ease, box-shadow .15s ease;
+
+}
+
+
+
+#form_valoracion_vivienda input:focus{
+
+  border-color:var(--primary);
+
+  box-shadow:0 0 0 3px rgba(0,115,170,.15);
+
+}
+
+
+
+/* Placeholder sutil */
+
+#form_valoracion_vivienda ::placeholder{ color:#9aa3af; }
+
+
+
+/* ===========
+
+   Fieldsets (grupos de opciones)
+
+   =========== */
+
+.hanok_radio_input{
+
+  margin:14px 0 6px;
+
+  padding:14px;
+
+  border:1px dashed var(--border);
+
+  border-radius:14px;
+
+  background:var(--bg);
+
+}
+
+.hanok_radio_input legend{
+
+  font-weight:700;
+
+  color:var(--text);
+
+  margin-bottom:4px;
+
+}
+
+
+
+/* Radios como “chips” */
+
+.hanok_radio_input label{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  margin:8px 8px 0 0;
+
+  padding:10px 12px;
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:999px;
+
+  font-weight:600;
+
+  color:var(--text);
+
+  cursor:pointer;
+
+  transition:all .15s ease;
+
+}
+
+.hanok_radio_input input[type="radio"]{
+
+  appearance:none;
+
+  inline-size:16px;
+
+  block-size:16px;
+
+  border:2px solid var(--border);
+
+  border-radius:50%;
+
+  display:inline-block;
+
+  position:relative;
+
+}
+
+.hanok_radio_input input[type="radio"]:checked{
+
+  border-color:var(--primary);
+
+  box-shadow:0 0 0 3px rgba(0,115,170,.15);
+
+}
+
+.hanok_radio_input input[type="radio"]:checked::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:3px;
+
+  border-radius:50%;
+
+  background:var(--primary);
+
+}
+
+.hanok_radio_input label:hover{
+
+  border-color:#cfd6de;
+
+  transform:translateY(-1px);
+
+  box-shadow:0 4px 10px rgba(0,0,0,.05);
+
+}
+
+
+
+/* ===========
+
+   Paso de dirección + autocompletado
+
+   =========== */
+
+#hanok_address_input{ position:relative; }
+
+#hanok_address_input ul, #hanok_address_input div{
+
+  position:absolute;
+
+  list-style-type:none;
+
+  width:100%;
+
+  z-index:50;
+
+}
+
+#hanok_address_input ul{ padding-left:0; margin-top:6px; }
+
+#hanok_address_input li{
+
+  padding:10px 12px;
+
+  margin:2px 0;
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+}
+
+#hanok_address_input li:hover{
+
+  background:#f5f9fc;
+
+  border-color:#d6e3ee;
+
+}
+
+
+
+/* ===========
+
+   UI navegación (Siguiente / Volver / Enviar)
+
+   =========== */
+
+#hanok_ui{
+
+  display:flex;
+
+  gap:10px;
+
+  align-items:center;
+
+  justify-content:flex-end;
+
+  margin-top:10px;
+
+}
+
+
+
+#hanok_ui button{
+
+  appearance:none;
+
+  border:none;
+
+  border-radius:12px;
+
+  padding:12px 16px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:transform .1s ease, box-shadow .15s ease, background .15s ease;
+
+}
+
+
+
+#hanok_ui_next{
+
+  background:var(--primary);
+
+  color:#fff;
+
+  box-shadow:0 6px 14px rgba(0,115,170,.25);
+
+}
+
+#hanok_ui_next:hover{ transform:translateY(-1px); box-shadow:0 10px 18px rgba(0,115,170,.28); }
+
+
+
+#hanok_ui_back{
+
+  background:#eef2f6;
+
+  color:var(--text);
+
+}
+
+#hanok_ui_back:hover{ background:#e7edf4; }
+
+
+
+#hanok_ui_submit{
+
+  background:#0f172a;
+
+  color:#fff;
+
+}
+
+#hanok_ui_submit:hover{ transform:translateY(-1px); box-shadow:0 10px 18px rgba(0,0,0,.18); }
+
+
+
+/* Deshabilitados (mantiene tu regla) */
+
+#contenedor_form_nuevo button[disabled]{
+
+  background:lightgray !important;
+
+  color:gray !important;
+
+  cursor:not-allowed;
+
+  box-shadow:none;
+
+  transform:none;
+
+}
+
+
+
+/* ===========
+
+   Teléfono (sobrescribe inline mínimos)
+
+   =========== */
+
+#hanok_telefono{
+
+  max-width:420px;
+
+  padding:1rem;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  background:#fff;
+
+}
+
+#hanok_telefono input{
+
+  width:100% !important;
+
+  padding:.65rem .8rem !important;
+
+  border:1px solid var(--border);
+
+  border-radius:10px;
+
+}
+
+#hanok_telefono button{
+
+  width:100% !important;
+
+  padding:.65rem .8rem !important;
+
+  border-radius:10px;
+
+  background:var(--primary) !important;
+
+  color:#fff !important;
+
+  font-weight:700;
+
+}
+
+#hanok_msg{ margin-top:.5rem; font-size:.9rem; color:var(--muted); }
+
+
+
+/* Checkbox políticas */
+
+#hanok_politicas{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:.6rem;
+
+  font-weight:600;
+
+  margin-top:12px;
+
+}
+
+#hanok_politicas input[type="checkbox"]{
+
+  inline-size:18px;
+
+  block-size:18px;
+
+  border:1px solid var(--border);
+
+  border-radius:4px;
+
+}
+
+
+
+/* ===========
+
+   Progreso/Procesando
+
+   =========== */
+
+#hanok_procesando_datos{
+
+  padding:2rem;
+
+  text-align:center;
+
+  color:var(--muted);
+
+}
+
+#hanok_procesando_datos::before{
+
+  content:"";
+
+  display:inline-block;
+
+  inline-size:22px;
+
+  block-size:22px;
+
+  border-radius:50%;
+
+  border:3px solid #d6e3ee;
+
+  border-top-color:var(--primary);
+
+  animation:hanok-spin .9s linear infinite;
+
+  margin-right:8px;
+
+  vertical-align:-5px;
+
+}
+
+@keyframes hanok-spin{ to { transform:rotate(360deg);} }
+
+
+
+/* ===========
+
+   Responsivo
+
+   =========== */
+
+@media (max-width: 900px){
+
+  #contenedor_form_nuevo{
+
+    grid-template-columns:1fr;
+
+  }
+
+  #mapa_valoracion_vivienda{ min-height:320px; }
+
+  .form-paso, #hanok_ui{ margin:0 1rem; }
+
+}
+
+
+
+/* ===========
+
+   Modo oscuro
+
+   =========== */
+
+@media (prefers-color-scheme: dark){
+
+  :root{
+
+    --text:#e5e7eb;
+
+    --muted:#a3aab4;
+
+    --border:#334155;
+
+    --bg:#0b1220;
+
+    --card:#0e1626;
+
+    --shadow:0 10px 20px rgba(0,0,0,.35);
+
+  }
+
+  #hanok_ui_back{ background:#1b263b; color:#e5e7eb; }
+
+  #hanok_address_input li{ background:#101a2a; }
+
+}
+

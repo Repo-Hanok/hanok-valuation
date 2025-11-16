@@ -1,0 +1,281 @@
+{
+    "preguntas": [
+        {
+            "id": "hanok_address_input",
+            "type": "text",
+            "step": 1
+        },
+
+        {
+            "id": "hanok_interes",
+            "type": "select",
+            "values": [ "vender" , "alquilar" , "comprar" , "info" ],
+            "step": 2
+        },
+        {
+            "id": "hanok_cuando_vender",
+            "type": "select",
+            "values": [ "ya" , "cuanto_antes" , "3_a_6_meses" , "mas_6_meses" ],
+            "step": 2,
+            "hidden" : true
+        },
+        {
+            "id": "hanok_donde_casa_anunciada",
+            "type": "select",
+            "values": [ "anunciada_en_plataformas" , "anunciada_en_rrss" , "anunciada_en_inmobiliaria" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_venta_exclusiva",
+            "type": "select",
+            "values": [ "si" , "no" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_exclusiva_cuantos_meses",
+            "type": "number",
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_motivo_vender",
+            "type": "select",
+            "values": [ "cambio_casa", "necesidad_economica", "herencia", "cambio_ciudad", "otro" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_motivo_3m",
+            "type": "select",
+            "values": [ "reforma" , "reforma" , "asuntos_personales", "otro" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_mot_6m",
+            "type": "select",
+            "values": [ "no_prisa" , "situacion_legal", "segunda_vivienda", "otro" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_hipoteca",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_gesvalt",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_2_viv_vender",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_motivo_info",
+            "type": "select",
+            "values": [ "vender_medio_plazo", "vender_futuro", "comprar", "info" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_comprar",
+            "type": "select",
+            "values": [ "primera_vivienda" , "segunda_residencia" , "cambio_vivienda" , "inversion" ],
+            "step": 2,
+            "hidden" : true
+        },
+        
+        {
+            "id": "hanok_precio_esperado",
+            "type": "number",
+            "step": "3",
+            "hidden": true
+        },
+        {
+            "id": "hanok_tipo_vivienda",
+            "type": "select",
+            "values": [ "piso" , "chalet_adosado" , "casa_independiente" ],
+            "step": 3
+        },
+        {
+            "id": "hanok_estado_inmueble",
+            "type": "select",
+            "values": [ "excelente", "aceptable", "necesita_reforma" ],
+            "step": 3
+        },
+        {
+            "id": "hanok_reforma",
+            "type": "select",
+            "values": [ "si", "no", "no_se" ],
+            "step": 3,
+            "hidden": true
+        },
+        {
+            "id": "hanok_superficie",
+            "type": "number",
+            "step": 3
+        },
+        {
+            "id": "hanok_dormitorios",
+            "type": "select",
+            "values": [ "1", "2", "3", "4+" ],
+            "step": 3
+        },
+        {
+            "id": "hanok_wc",
+            "type": "select",
+            "values": [ "1", "2", "3+" ],
+            "step": 3
+        },
+        {
+            "id": "hanok_nombre",
+            "type": "text",
+            "step": 4
+        }
+        ,
+        {
+            "id": "hanok_email",
+            "type": "email",
+            "step": 4
+        },
+        {
+            "id": "hanok_telefono",
+            "type": "tel",
+            "step": 4
+        }
+        ,
+        {
+            "id": "hanok_politicas",
+            "type": "checkbox",
+            "step": 4
+        }
+    ],
+
+
+
+
+
+
+
+
+
+
+
+    "reglas": [
+        {
+            "target": "hanok_cuando_vender",
+            "showWhen": {
+                "eq": [ "hanok_interes" , "vender" ]
+            }
+        },
+        {
+            "target": "hanok_donde_casa_anunciada",
+            "showWhen": {
+                "eq": [ "hanok_cuando_vender", "ya" ]
+            }
+        },
+        {
+            "target": "hanok_venta_exclusiva",
+            "showWhen": {
+                "eq": [ "hanok_donde_casa_anunciada" , "anunciada_en_inmobiliaria" ]
+            }
+        },
+        {
+            "target": "hanok_exclusiva_cuantos_meses",
+            "showWhen": {
+                "eq": [ "hanok_venta_exclusiva" , "si" ]
+            }
+        },
+        {
+            "target": "hanok_motivo_vender",
+            "showWhen": {
+                "eq": [ "hanok_cuando_vender", "cuanto_antes" ]
+            }
+        },
+        {
+            "target": "hanok_motivo_3m",
+            "showWhen": {
+                "eq": [ "hanok_cuando_vender", "3_a_6_meses" ]
+            }
+        },
+        {
+            "target": "hanok_mot_6m",
+            "showWhen": {
+                "eq": [ "hanok_cuando_vender", "mas_6_meses" ]
+            }
+        },
+        {
+            "target": "hanok_comprar",
+            "showWhen": {
+                "or":[
+                    {"eq": [ "hanok_interes" , "comprar" ]},
+                    {"eq": [ "hanok_motivo_info" , "comprar" ]}
+                ]
+            }
+        },
+        {
+            "target": "hanok_hipoteca",
+            "showWhen": {
+                "or": [
+                    { "eq": [ "hanok_comprar" , "primera_vivienda" ]},
+                    {"eq": [ "hanok_comprar" , "segunda_residencia" ]},
+                    {"eq": [ "hanok_comprar" , "inversion" ]}
+                ]
+            }
+        },
+        {
+            "target": "hanok_gesvalt",
+            "showWhen": {
+                "eq": [ "hanok_hipoteca" , "si" ]
+            }
+        },
+        {
+            "target": "hanok_2_viv_vender",
+            "showWhen": {
+                "eq": [ "hanok_comprar" , "cambio_vivienda" ]
+            }
+        },
+        {
+            "target": "hanok_motivo_info",
+            "showWhen": {
+                "eq": [ "hanok_interes" , "info" ]
+            }
+        },
+        {
+            "target": "hanok_precio_esperado",
+            "showWhen": {
+                "or": [
+                    {"eq": [ "hanok_interes", "vender" ]},
+                    {"eq": [ "hanok_motivo_info", "vender_medio_plazo" ]},
+                    {"eq": [ "hanok_motivo_info", "vender_futuro" ]}
+                ]
+            }
+        },
+        {
+            "target": "hanok_reforma",
+            "showWhen": {
+                "and": [
+                    {"or": [
+                        {"eq": [ "hanok_interes", "comprar" ]},
+                        {"eq": [ "hanok_motivo_info", "comprar" ]}
+                    ]},
+                    {"or": [
+                        {"eq": [ "hanok_estado_inmueble", "aceptable" ]},
+                        {"eq": [ "hanok_estado_inmueble", "necesita_reforma" ]}
+                    ]}
+                ]
+            }
+        }
+    ]
+}
