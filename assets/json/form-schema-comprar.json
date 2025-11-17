@@ -1,0 +1,235 @@
+{
+    "preguntas": [
+        {
+            "id": "hanok_address_input",
+            "type": "text",
+            "step": 1
+        },
+        
+
+        {
+            "id": "hanok_comprar_interes_zona",
+            "type": "select",
+            "values": [ "solo_inmueble", "interes_zona" ],
+            "step": 2
+        },
+        {
+            "id": "hanok_comprar",
+            "type": "select",
+            "values": [ "primera_vivienda" , "segunda_residencia" , "cambio_vivienda" , "inversion" ],
+            "step": 2,
+            "hidden" : true
+        },
+        {
+            "id": "hanok_hipoteca",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_tasacion_oficial",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_2_viv_vender",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 2,
+            "hidden": true
+        },
+
+
+        {
+            "id": "hanok_superficie",
+            "type": "number",
+            "step": 3
+        },
+        {
+            "id": "hanok_dormitorios",
+            "type": "select",
+            "values": [ "1", "2", "3", "4+" ],
+            "step": 3
+        },
+        {
+            "id": "hanok_wc",
+            "type": "select",
+            "values": [ "1", "2", "3+" ],
+            "step": 3
+        },
+
+
+        {
+            "id": "hanok_tipo_vivienda",
+            "type": "select",
+            "values": [ "piso" , "chalet_adosado" , "casa_independiente" ],
+            "step": 4
+        },
+        {
+            "id": "hanok_estado_inmueble",
+            "type": "select",
+            "values": [ "excelente", "aceptable", "necesita_reforma" ],
+            "step": 4
+        },
+
+
+        {
+            "id": "hanok_cuando_comprar",
+            "type": "select",
+            "values": [ "3_6_meses", "+6_meses" ],
+            "step": 5
+        },
+        {
+            "id": "hanok_interes_ahorro_suministros",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 5
+        },
+        
+
+        
+        
+        {
+            "id": "hanok_nombre",
+            "type": "text",
+            "step": 4
+        }
+        ,
+        {
+            "id": "hanok_email",
+            "type": "email",
+            "step": 4
+        },
+        {
+            "id": "hanok_telefono",
+            "type": "tel",
+            "step": 4
+        }
+        ,
+        {
+            "id": "aceptacion-politica",
+            "type": "checkbox",
+            "step": 4
+        }
+    ],
+
+
+
+
+
+
+
+
+
+
+
+    "reglas": [
+        {
+            "target": "hanok_cuando_vender",
+            "showWhen": {
+                "eq": [ "hanok_interes" , "vender" ]
+            }
+        },
+        {
+            "target": "hanok_donde_casa_anunciada",
+            "showWhen": {
+                "eq": [ "hanok_cuando_vender", "ya" ]
+            }
+        },
+        {
+            "target": "hanok_venta_exclusiva",
+            "showWhen": {
+                "eq": [ "hanok_donde_casa_anunciada" , "anunciada_en_inmobiliaria" ]
+            }
+        },
+        {
+            "target": "hanok_exclusiva_cuantos_meses",
+            "showWhen": {
+                "eq": [ "hanok_venta_exclusiva" , "si" ]
+            }
+        },
+        {
+            "target": "hanok_motivo_vender",
+            "showWhen": {
+                "eq": [ "hanok_cuando_vender", "cuanto_antes" ]
+            }
+        },
+        {
+            "target": "hanok_motivo_3m",
+            "showWhen": {
+                "eq": [ "hanok_cuando_vender", "3_a_6_meses" ]
+            }
+        },
+        {
+            "target": "hanok_mot_6m",
+            "showWhen": {
+                "eq": [ "hanok_cuando_vender", "mas_6_meses" ]
+            }
+        },
+        {
+            "target": "hanok_comprar",
+            "showWhen": {
+                "or":[
+                    {"eq": [ "hanok_interes" , "comprar" ]},
+                    {"eq": [ "hanok_motivo_info" , "comprar" ]}
+                ]
+            }
+        },
+        {
+            "target": "hanok_hipoteca",
+            "showWhen": {
+                "or": [
+                    { "eq": [ "hanok_comprar" , "primera_vivienda" ]},
+                    {"eq": [ "hanok_comprar" , "segunda_residencia" ]},
+                    {"eq": [ "hanok_comprar" , "inversion" ]}
+                ]
+            }
+        },
+        {
+            "target": "hanok_gesvalt",
+            "showWhen": {
+                "eq": [ "hanok_hipoteca" , "si" ]
+            }
+        },
+        {
+            "target": "hanok_2_viv_vender",
+            "showWhen": {
+                "eq": [ "hanok_comprar" , "cambio_vivienda" ]
+            }
+        },
+        {
+            "target": "hanok_motivo_info",
+            "showWhen": {
+                "eq": [ "hanok_interes" , "info" ]
+            }
+        },
+        {
+            "target": "hanok_precio_esperado",
+            "showWhen": {
+                "or": [
+                    {"eq": [ "hanok_interes", "vender" ]},
+                    {"eq": [ "hanok_motivo_info", "vender_medio_plazo" ]},
+                    {"eq": [ "hanok_motivo_info", "vender_futuro" ]}
+                ]
+            }
+        },
+        {
+            "target": "hanok_reforma",
+            "showWhen": {
+                "and": [
+                    {"or": [
+                        {"eq": [ "hanok_interes", "comprar" ]},
+                        {"eq": [ "hanok_motivo_info", "comprar" ]}
+                    ]},
+                    {"or": [
+                        {"eq": [ "hanok_estado_inmueble", "aceptable" ]},
+                        {"eq": [ "hanok_estado_inmueble", "necesita_reforma" ]}
+                    ]}
+                ]
+            }
+        }
+    ]
+}

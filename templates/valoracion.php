@@ -2,31 +2,7 @@
 
 <div class="hanok-report">
 
-  
-  <script>
-  function initHanokMap() {
-    var mapDiv = document.getElementById('hanok-report-map');
-    if (!mapDiv) return;
 
-    var lat = parseFloat(mapDiv.dataset.lat);
-    var lng = parseFloat(mapDiv.dataset.lng);
-
-    if (isNaN(lat) || isNaN(lng)) return;
-
-    var center = { lat: lat, lng: lng };
-
-    var map = new google.maps.Map(mapDiv, {
-      center: center,
-      zoom: 16,
-      disableDefaultUI: true,
-    });
-
-    new google.maps.Marker({
-      position: center,
-      map: map
-    });
-  }
-</script>
   <!-- CAPA DE CONTENIDO ENCIMA DEL MAPA -->
   <div class="hanok-report-content">
 
@@ -68,13 +44,13 @@
 
           <!-- Caja 1: valoración inmueble -->
           <article class="hanok-report-card hanok-report-card--valoracion">
-            <h2 class="hanok-report-title">
+            <p class="hanok-report-title">
               Valoración estimada:
               <br>
               <b class="hanok-report-valoracion-monto">
                 <?= number_format($avm_valuation, 0, ',', '.') ?> €
               </b>
-            </h2>
+      </p>
             
 
             <?php if (!empty($precio_m2)): ?>
@@ -176,9 +152,9 @@
 
             <article class="comparable-card">
 
-              <h4 class="comparable-title">
+              <p class="comparable-title">
                 <?= htmlspecialchars($c['full_address'] ?? 'Dirección no disponible') ?>
-              </h4>
+            </p>
 
               <p class="comparable-text">
                 <?= number_format($c['local_price'] ?? 0, 0, ',', '.') ?> €

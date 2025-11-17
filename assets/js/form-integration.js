@@ -34,15 +34,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // comprueba si hacemos informe viejo o el nuevo y recoge los datos pertinentes
 function initIntegration() {
-
+    const form = document.getElementById('form_valoracion_vivienda')
     const formData = obtenerDatosForm()
 
+    // VENDER (informe viejo)
+        if (form.classList.contains('vender')) {
+            /***
+             * 
+             *  AQUÍ METER : INTERÉS = VENDER ...
+             */
+            console.log('vender')
+            formData.hanok_interes = 'vender'
+            const oldApiData = adaptaDatosParaApiVieja(formData)
+            return oldApiData
+        }
+    // ALQUILAR (informe nuevo)
+        else if (form.classList.contains('alquilar')) {
+            console.log('alquilar')
+            formData.hanok_interes = 'alquilar'
+            return formData
+        }
+    // COMPRAR (informe nuevo)
+        else if (form.classList.contains('comprar')) {
+            console.log('comprar')
+            formData.hanok_interes = 'comprar'
+            return formData
+        }
+    // INFO (informe nuevo)
+        else if (form.classList.contains('info')) {
+            console.log('info')
+            formData.hanok_interes = 'info'
+            return formData
+        }
+    // MAIN (ambos informes)
+    console.log('main')
     if (formData.hanok_interes === "vender" ||
     formData.hanok_motivo_info === "vender_medio_plazo" ||
     formData.hanok_motivo_info === "vender_futuro" ) {
 
         const oldApiData = adaptaDatosParaApiVieja(formData)
-        //console.log(oldApiData)
         return oldApiData
     }
 

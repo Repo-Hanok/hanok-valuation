@@ -2,31 +2,6 @@
 
 <div class="hanok-report">
 
-  
-  <script>
-  function initHanokMap() {
-    var mapDiv = document.getElementById('hanok-report-map');
-    if (!mapDiv) return;
-
-    var lat = parseFloat(mapDiv.dataset.lat);
-    var lng = parseFloat(mapDiv.dataset.lng);
-
-    if (isNaN(lat) || isNaN(lng)) return;
-
-    var center = { lat: lat, lng: lng };
-
-    var map = new google.maps.Map(mapDiv, {
-      center: center,
-      zoom: 16,
-      disableDefaultUI: true,
-    });
-
-    new google.maps.Marker({
-      position: center,
-      map: map
-    });
-  }
-</script>
   <!-- CAPA DE CONTENIDO ENCIMA DEL MAPA -->
   <div class="hanok-report-content">
 
@@ -136,7 +111,7 @@
       <?php if (!empty($comparables)): ?>
 
         <h3 class="hanok-report-subtitle">
-          Inmuebles similares en venta en la zona
+          Inmuebles similares en alquiler en la zona
         </h3>
 
         <div class="comparables-list">

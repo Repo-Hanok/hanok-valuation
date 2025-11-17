@@ -13,12 +13,21 @@ function hanok_callback_info_valoracion() {
 
 
     wp_enqueue_script(
-      'hanok-gmaps',
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2jcVaf_8X1ERkLEbMuCSvemnu7jZvE7k&callback=initHanokMap',
-      array(),
-      null,
-      true
+        'hanok-map-init',
+        HANOK_PLUGIN_URL . 'assets/js/hanok-map-init.js',
+        [],
+        null,
+        true
     );
+
+    wp_enqueue_script(
+        'hanok-gmaps',
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2jcVaf_8X1ERkLEbMuCSvemnu7jZvE7k&callback=initHanokMap',
+        ['hanok-map-init'], // depende del anterior
+        null,
+        true
+    );
+
 
 
 

@@ -1,0 +1,164 @@
+{
+    "preguntas": [
+        {
+            "id": "hanok_address_input",
+            "type": "text",
+            "step": 1
+        },
+
+        {
+            "id": "hanok_precio_alquiler",
+            "type": "number",
+            "step": 2
+        },
+        {
+            "id": "hanok_donde_casa_anunciada",
+            "type": "select",
+            "values": [ "anunciada_en_plataformas" , "anunciada_en_rrss" , "anunciada_en_inmobiliaria" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_venta_exclusiva",
+            "type": "select",
+            "values": [ "si" , "no" ],
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_exclusiva_cuantos_meses",
+            "type": "number",
+            "step": 2,
+            "hidden": true
+        },
+        {
+            "id": "hanok_tipo_vivienda",
+            "type": "select",
+            "values": [ "piso" , "chalet_adosado" , "casa_independiente" ],
+            "step": 2
+        },
+        {
+            "id": "hanok_estado_inmueble",
+            "type": "select",
+            "values": [ "excelente", "aceptable", "necesita_reforma" ],
+            "step": 2
+        },
+
+        {
+            "id": "hanok_superficie",
+            "type": "number",
+            "step": 3
+        },
+        {
+            "id": "hanok_dormitorios",
+            "type": "select",
+            "values": [ "1", "2", "3", "4+" ],
+            "step": 3
+        },
+        {
+            "id": "hanok_wc",
+            "type": "select",
+            "values": [ "1", "2", "3+" ],
+            "step": 3
+        },
+        
+        
+        {
+            "id": "hanok_viv_amueblada",
+            "type": "number",
+            "values": [ "si", "no" ],
+            "step": 4
+        },
+        {
+            "id": "hanok_viv_extras",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 4
+        },
+
+
+
+        {
+            "id": "hanok_alquiler_parcial",
+            "type": "select",
+            "values": [ "viv_entera", "por_habitaciones" ],
+            "step": 5
+        },
+        {
+            "id": "hanok_alquiler_temporada",
+            "type": "select",
+            "values": [ "temporada", "larga_estancia" ],
+            "step": 5
+        },
+        {
+            "id": "hanok_tiempo_alquiler",
+            "type": "select",
+            "values": [ "1_ano", "3_anos", "+5_anos" ],
+            "step": 5
+        },
+        {
+            "id": "hanok_seguro_impago_alq",
+            "type": "select",
+            "values": [ "si", "no", "no_se" ],
+            "step": 5
+        },
+
+
+        {
+            "id": "hanok_alquiler_inicio",
+            "type": "select",
+            "values": [ "ya", "3_6_meses", "+6_meses" ],
+            "step": 6
+        },
+        {
+            "id": "hanok_interes_ahorro_suministros",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 6
+        },
+        {
+            "id": "hanok_interes_agencia_alquiler",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 6
+        },
+
+
+        {
+            "id": "hanok_nombre",
+            "type": "text",
+            "step": 7
+        }
+        ,
+        {
+            "id": "hanok_email",
+            "type": "email",
+            "step": 7
+        },
+        {
+            "id": "hanok_telefono",
+            "type": "tel",
+            "step": 7
+        }
+        ,
+        {
+            "id": "aceptacion-politica",
+            "type": "checkbox",
+            "step": 7
+        }
+    ],
+
+
+
+
+
+    "reglas": [
+        {
+            "target": "hanok_tiempo_alquiler",
+            "showWhen": {
+                "eq": [ "hanok_alquiler_temporada", "larga_estancia" ]
+            }
+        }
+        
+    ]
+}

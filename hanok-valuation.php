@@ -15,6 +15,7 @@
 
 
 // constantes
+define( 'HANOK_CONFIG', 'vender' ); // main - vender - comprar - alquilar - info
 
 define( 'HANOK_PLUGIN_PATH', plugin_dir_path( __FILE__ ) ); // ruta relativa para 'includes' (servidor)
 

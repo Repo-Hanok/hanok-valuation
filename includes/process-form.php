@@ -85,7 +85,7 @@ function hanok_rest_valuation(WP_REST_Request $req) {
         $res_ac = fetch_api_active_campaign(ACTIVE_CAMPAIGN_URL, $data_AC);
         // error_log(print_r($res_ac, true));
 
-
+        error_log(print_r($data_AC, true));
 
         
         // datos extra para la plantilla del informe
@@ -162,14 +162,13 @@ function hanok_rest_valuation(WP_REST_Request $req) {
     } else {
         // Error
         error_log('(X) Error en los datos: falta nombre cliente');
+        return new WP_Error(
+            'bad_request',
+            'Faltan datos obligatorios en el formulario',
+            ['status' => 400]
+        );  
     }
 
-
-    return new WP_REST_Response([
-        'ok' => true,
-        //'redirect' => $url,
-        //'token' => $token,
-    ], 200);
 }
 
 
@@ -182,14 +181,12 @@ function calcular_medias($payload) {
     $avm_valuation = $payload['avm_valuation'] ?? null;
     $comparables   = $payload['comparables']   ?? [];
 
-    error_log('area inmueb : '.$area_inmueble);
 
     // precio por m2 del inmueble valorado
     $precio_m2 = ($avm_valuation && $area_inmueble)
         ? round($avm_valuation / $area_inmueble, 2)
         : null;
 
-    error_log('precio : '.$precio_m2);
 
     // precios m2 de comparables
     $precios_m2_comparables = array_filter(array_map(function ($c) {
@@ -207,14 +204,12 @@ function calcular_medias($payload) {
         ? round(array_sum($precios_m2_comparables) / count($precios_m2_comparables), 2)
         : null;
 
-    error_log('precio_medio_m2 : '.$precio_medio_m2);
 
     // diferencia porcentual vs media comparables
     $dif_precio_medio = ($precio_m2 && $precio_medio_m2)
         ? round((($precio_m2 - $precio_medio_m2) / $precio_medio_m2) * 100, 1)
         : null;
 
-    error_log('dif_precio_medio : '.$dif_precio_medio);
 
     $metricas = [
         'precio_m2'        => $precio_m2,
