@@ -89,6 +89,7 @@
 
 #form_valoracion_vivienda label{
   color:var(--text);
+  font-weight: bold;
   font-size: clamp(0.95rem, 2vw, 1.05rem);
 }
 

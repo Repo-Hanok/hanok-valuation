@@ -49,13 +49,20 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
         /******===____ API NUEVA ___====*******/
 
+        $tipo_operacion = 2;
+
+        if (isset($data['hanok_interes']) && $data['hanok_interes'] === 'alquilar') {
+            $tipo_operacion = 1;
+            error_log('alquilar');
+        }
+
         // montamos la petición para solicitar una valoración
         $body = [
             'area' => floatval($data['hanok_superficie']),
             'latitude' => floatval($data['lat']),
             'longitude' => floatval($data['lng']),
             'property_type_id' => 4,
-            'operation_type_id' => 2,
+            'operation_type_id' => $tipo_operacion,
         ];
 
         // solicitamos
@@ -89,7 +96,8 @@ function hanok_rest_valuation(WP_REST_Request $req) {
             'longitude' => floatval($data['lng']),
             'nombre' => $data['hanok_nombre'],
             'dormitorios' => floatval($data['hanok_dormitorios']),
-            'wc' => floatval($data['hanok_wc'])
+            'wc' => floatval($data['hanok_wc']),
+            'operation_type_id' => $tipo_operacion
         ];
         $vars = array_merge($vars, $aux_data);
 

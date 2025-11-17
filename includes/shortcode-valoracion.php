@@ -56,7 +56,13 @@ function hanok_callback_info_valoracion() {
 
     ob_start();
 
-    echo hanok_render('valoracion.php', $hanok_data);
+    if ($hanok_data['operation_type_id'] === 1) {
+        echo hanok_render('valoracion-alquiler.php', $hanok_data);
+
+    } else {
+
+        echo hanok_render('valoracion.php', $hanok_data);
+    }
 
 
 
