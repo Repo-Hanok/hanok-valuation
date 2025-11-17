@@ -99,7 +99,14 @@ async function initAutocomplete() {
 
             // Opcional: menos UI
             disableDefaultUI: true,
-            zoomControl: true,
+            //mapTypeId: google.maps.MapTypeId.SATELLITE,
+            styles: [
+                {
+                featureType: "all",
+                elementType: "labels",
+                stylers: [{ visibility: "off" }]
+                }
+            ]
             });
 
             marker = new AdvancedMarkerElement({

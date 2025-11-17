@@ -66,19 +66,43 @@ function hanok_rest_valuation(WP_REST_Request $req) {
             return new WP_Error('cassandra_error', 'No se pudo obtener la valoración', ['status' => 502]);
         }
 
+        
         // formateamos los datos
         $vars = format_data_cassandra($response); // ['avm_valuation'=>..., 'comparables'=>...]
-
+        
         // enviamos los datos a Active Campaign
         $data_AC = array_merge($data, [
             'avm_valuation'     => isset($vars['avm_valuation']) ? (int)$vars['avm_valuation'] : null
         ]);
-
+        
         $res_ac = fetch_api_active_campaign(ACTIVE_CAMPAIGN_URL, $data_AC);
-        error_log(print_r($res_ac, true));
+        // error_log(print_r($res_ac, true));
+
+
+
+        
+        // datos extra para la plantilla del informe
+        $aux_data = [
+            'calle' => $data['calle'].' '. $data['num'].', '.$data['ciudad'],
+            'area' => floatval($data['hanok_superficie']),
+            'latitude' => floatval($data['lat']),
+            'longitude' => floatval($data['lng']),
+            'nombre' => $data['hanok_nombre'],
+            'dormitorios' => floatval($data['hanok_dormitorios']),
+            'wc' => floatval($data['hanok_wc'])
+        ];
+        $vars = array_merge($vars, $aux_data);
+
+
+//error_log(print_r($vars, true));
+
+
+        // calcular métricas
+        $metrics = calcular_medias($vars);
+
 
         $token = bin2hex(random_bytes(10));
-        set_transient("hanok_report_$token", $vars, 3 * DAY_IN_SECONDS);
+        set_transient("hanok_report_$token", $metrics, 3 * DAY_IN_SECONDS);
 
         $url = add_query_arg('t', $token, home_url('/valoracion/'));
 
@@ -92,7 +116,6 @@ function hanok_rest_valuation(WP_REST_Request $req) {
     } else if (isset($data['client_name'])) {
 
         /******===____ API VIEJA ___====*******/
-        error_log('(V) api vieja');
 
         // Preparamos body y headers
         $aws_url = "https://ne30b426id.execute-api.eu-west-3.amazonaws.com/vv-etapa-api";
@@ -139,4 +162,57 @@ function hanok_rest_valuation(WP_REST_Request $req) {
         //'redirect' => $url,
         //'token' => $token,
     ], 200);
+}
+
+
+// funcion auxiliar para calcular precio por m2
+function calcular_medias($payload) {
+
+    $area_inmueble = isset($payload['area']) ? (float)$payload['area'] : null;
+    $area_inmueble = ($area_inmueble > 0) ? $area_inmueble : null;
+
+    $avm_valuation = $payload['avm_valuation'] ?? null;
+    $comparables   = $payload['comparables']   ?? [];
+
+    error_log('area inmueb : '.$area_inmueble);
+
+    // precio por m2 del inmueble valorado
+    $precio_m2 = ($avm_valuation && $area_inmueble)
+        ? round($avm_valuation / $area_inmueble, 2)
+        : null;
+
+    error_log('precio : '.$precio_m2);
+
+    // precios m2 de comparables
+    $precios_m2_comparables = array_filter(array_map(function ($c) {
+        $local_price = $c['local_price'] ?? null;
+        $area        = $c['area'] ?? null;
+
+        return ($local_price && $area)
+            ? $local_price / $area
+            : null;
+
+    }, is_array($comparables) ? $comparables : []));
+
+    // media de precios m2 comparables
+    $precio_medio_m2 = count($precios_m2_comparables)
+        ? round(array_sum($precios_m2_comparables) / count($precios_m2_comparables), 2)
+        : null;
+
+    error_log('precio_medio_m2 : '.$precio_medio_m2);
+
+    // diferencia porcentual vs media comparables
+    $dif_precio_medio = ($precio_m2 && $precio_medio_m2)
+        ? round((($precio_m2 - $precio_medio_m2) / $precio_medio_m2) * 100, 1)
+        : null;
+
+    error_log('dif_precio_medio : '.$dif_precio_medio);
+
+    $metricas = [
+        'precio_m2'        => $precio_m2,
+        'precio_medio_m2'  => $precio_medio_m2,
+        'dif_precio_medio' => $dif_precio_medio,
+    ];
+
+    return array_merge($payload, $metricas);
 }

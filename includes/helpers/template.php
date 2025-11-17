@@ -15,6 +15,8 @@ function hanok_render($template, array $vars = []) {
 
 
     extract($vars);
+        // 📌 DEBUG: muestra TODO lo que llega al render
+    //error_log("HANOK_RENDER VARS: " . print_r($vars, true));
 
 
 
