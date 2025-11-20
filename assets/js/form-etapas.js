@@ -35,9 +35,23 @@ document.addEventListener('DOMContentLoaded', () => {
     formularioHanok.addEventListener('change', lockButtons, true)
     formularioHanok.addEventListener('click', lockButtons, true)
 
+    // control para el botón 'Enter'
+    formularioHanok.addEventListener("keydown", (e) => { // TODO --> Golpea el botón de siguiente si está disponible, o el de enviar formulario
+    if (e.key === "Enter") e.preventDefault();
+    });
 
     // inicialización del estado
     toggleButtons(); lockButtons();
+
+    // en móvil, hace scroll hasta el título del formulario cuando cambias de etapa
+    function resetScrollMovil() {
+    if (window.innerWidth <= 768) {
+        const titulo = document.querySelector('#hanok_titulo');
+        if (titulo) titulo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    }
+
+
 
 
     // muestra/oculta los botones de la UI en función de qué etapa estemos
@@ -50,13 +64,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // muestra sólo la etapa actual
-    function actualizarEtapa() {
+    function actualizarEtapa(n) {
+        //seguridad
+        if(typeof(n) !== 'number') {
+            console.log('fail en actualizarEtapa'); return
+        }
+        etapaActual = etapaActual + n
+        // ver si la etapa actual está vacía
+        // es decir: los hijos están todos como hidden=true
+        let etapaVacia = true;
+        const hijos = etapasFormVV[etapaActual - 1].children;
 
+        for (let i = 0; i < hijos.length; i++) {
+            if (!hijos[i].hidden) {
+                etapaVacia = false;
+                break;
+            }
+        }
+        // si está vacío salta a la siguiente etapa
+        if(etapaVacia) etapaActual = etapaActual + n
+        // cambiamos visibilidad
         etapasFormVV.forEach((elt, ind) => {
             elt.hidden = ind !== etapaActual - 1
         });
-
         lockButtons()
+        resetScrollMovil()
     }
 
 
@@ -74,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const resto = etapa.querySelectorAll(':scope > label:not([hidden])')
 
         const radioCheck = Array.from(radios).every((r) => {
+            if(r.classList.contains('hanok_check_group')) return true
             if(r.id !== 'hanok_telefono') {
                 return Array.from(r.querySelectorAll('input')).some(i => i.checked)
             } else {
@@ -92,9 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function botonAtras() {
 
-        etapaActual--
+        actualizarEtapa(-1)
         toggleButtons()
-        actualizarEtapa()
         lockButtons()
     }
 
@@ -103,9 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if(validarEtapa()){
 
-            etapaActual++
+            actualizarEtapa(1)
             toggleButtons()
-            actualizarEtapa()
             lockButtons()
             return
         }

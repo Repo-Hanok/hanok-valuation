@@ -120,6 +120,31 @@
             "step": 5
         },
         {
+            "id": "hanok_trastero",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_garaje",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_terraza",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_ascensor",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_piscina",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
             "id": "hanok_viv_en_uso",
             "type": "select",
             "values": [ "si", "no" ],
@@ -225,6 +250,12 @@
             "target": "hanok_mot_6m",
             "showWhen": {
                 "eq": [ "hanok_cuando_vender", "mas_6_meses" ]
+            }
+        },
+        {
+            "target": "hanok_extras",
+            "showWhen": {
+                "eq": [ "hanok_viv_extras", "si" ]
             }
         }
         

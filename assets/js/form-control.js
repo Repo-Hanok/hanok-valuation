@@ -27,6 +27,7 @@ async function startFormControl() {
     })
 
 
+
     // evaluación inicial
     evalRules(reglas)
     globalRef = reglas

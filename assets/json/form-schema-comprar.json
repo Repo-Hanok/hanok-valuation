@@ -69,6 +69,12 @@
             "step": 4
         },
         {
+            "id": "hanok_antiguedad_viv",
+            "type": "select",
+            "values": [ "nueva" , "segunda_mano" ],
+            "step": 4
+        },
+        {
             "id": "hanok_estado_inmueble",
             "type": "select",
             "values": [ "excelente", "aceptable", "necesita_reforma" ],
@@ -76,6 +82,38 @@
         },
 
 
+        {
+            "id": "hanok_viv_extras",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 5
+        },
+        {
+            "id": "hanok_trastero",
+            "type": "checkbox",
+            "step": 5
+        },
+
+        {
+            "id": "hanok_garaje",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_terraza",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_ascensor",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_piscina",
+            "type": "checkbox",
+            "step": 5
+        },
         {
             "id": "hanok_cuando_comprar",
             "type": "select",
@@ -95,89 +133,30 @@
         {
             "id": "hanok_nombre",
             "type": "text",
-            "step": 4
+            "step": 6
         }
         ,
         {
             "id": "hanok_email",
             "type": "email",
-            "step": 4
+            "step": 6
         },
         {
             "id": "hanok_telefono",
             "type": "tel",
-            "step": 4
+            "step": 6
         }
         ,
         {
             "id": "aceptacion-politica",
             "type": "checkbox",
-            "step": 4
+            "step": 6
         }
     ],
 
 
 
-
-
-
-
-
-
-
-
     "reglas": [
-        {
-            "target": "hanok_cuando_vender",
-            "showWhen": {
-                "eq": [ "hanok_interes" , "vender" ]
-            }
-        },
-        {
-            "target": "hanok_donde_casa_anunciada",
-            "showWhen": {
-                "eq": [ "hanok_cuando_vender", "ya" ]
-            }
-        },
-        {
-            "target": "hanok_venta_exclusiva",
-            "showWhen": {
-                "eq": [ "hanok_donde_casa_anunciada" , "anunciada_en_inmobiliaria" ]
-            }
-        },
-        {
-            "target": "hanok_exclusiva_cuantos_meses",
-            "showWhen": {
-                "eq": [ "hanok_venta_exclusiva" , "si" ]
-            }
-        },
-        {
-            "target": "hanok_motivo_vender",
-            "showWhen": {
-                "eq": [ "hanok_cuando_vender", "cuanto_antes" ]
-            }
-        },
-        {
-            "target": "hanok_motivo_3m",
-            "showWhen": {
-                "eq": [ "hanok_cuando_vender", "3_a_6_meses" ]
-            }
-        },
-        {
-            "target": "hanok_mot_6m",
-            "showWhen": {
-                "eq": [ "hanok_cuando_vender", "mas_6_meses" ]
-            }
-        },
-        {
-            "target": "hanok_comprar",
-            "showWhen": {
-                "or":[
-                    {"eq": [ "hanok_interes" , "comprar" ]},
-                    {"eq": [ "hanok_motivo_info" , "comprar" ]}
-                ]
-            }
-        },
         {
             "target": "hanok_hipoteca",
             "showWhen": {
@@ -189,7 +168,7 @@
             }
         },
         {
-            "target": "hanok_gesvalt",
+            "target": "hanok_tasacion_oficial",
             "showWhen": {
                 "eq": [ "hanok_hipoteca" , "si" ]
             }
@@ -201,34 +180,9 @@
             }
         },
         {
-            "target": "hanok_motivo_info",
+            "target": "hanok_extras",
             "showWhen": {
-                "eq": [ "hanok_interes" , "info" ]
-            }
-        },
-        {
-            "target": "hanok_precio_esperado",
-            "showWhen": {
-                "or": [
-                    {"eq": [ "hanok_interes", "vender" ]},
-                    {"eq": [ "hanok_motivo_info", "vender_medio_plazo" ]},
-                    {"eq": [ "hanok_motivo_info", "vender_futuro" ]}
-                ]
-            }
-        },
-        {
-            "target": "hanok_reforma",
-            "showWhen": {
-                "and": [
-                    {"or": [
-                        {"eq": [ "hanok_interes", "comprar" ]},
-                        {"eq": [ "hanok_motivo_info", "comprar" ]}
-                    ]},
-                    {"or": [
-                        {"eq": [ "hanok_estado_inmueble", "aceptable" ]},
-                        {"eq": [ "hanok_estado_inmueble", "necesita_reforma" ]}
-                    ]}
-                ]
+                "eq": [ "hanok_viv_extras", "si" ]
             }
         }
     ]

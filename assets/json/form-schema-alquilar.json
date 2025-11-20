@@ -74,6 +74,32 @@
             "type": "select",
             "values": [ "si", "no" ],
             "step": 4
+        },     
+        {
+            "id": "hanok_trastero",
+            "type": "checkbox",
+            "step": 4
+        },
+
+        {
+            "id": "hanok_garaje",
+            "type": "checkbox",
+            "step": 4
+        },
+        {
+            "id": "hanok_terraza",
+            "type": "checkbox",
+            "step": 4
+        },
+        {
+            "id": "hanok_ascensor",
+            "type": "checkbox",
+            "step": 4
+        },
+        {
+            "id": "hanok_piscina",
+            "type": "checkbox",
+            "step": 4
         },
 
 
@@ -157,6 +183,12 @@
             "target": "hanok_tiempo_alquiler",
             "showWhen": {
                 "eq": [ "hanok_alquiler_temporada", "larga_estancia" ]
+            }
+        },
+        {
+            "target": "hanok_extras",
+            "showWhen": {
+                "eq": [ "hanok_viv_extras", "si" ]
             }
         }
         

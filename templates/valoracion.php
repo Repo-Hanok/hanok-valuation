@@ -50,7 +50,7 @@
               <b class="hanok-report-valoracion-monto">
                 <?= number_format($avm_valuation, 0, ',', '.') ?> €
               </b>
-      </p>
+            </p>
             
 
             <?php if (!empty($precio_m2)): ?>

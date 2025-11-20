@@ -6,12 +6,19 @@
 
 // callback para el shortcode del formulario -> añade scripts y estilos y también la plantilla
 
-function hanok_callback_form_valoracion() {
+function hanok_callback_form_valoracion($atts) {
+
+    // Leer atributos del shortcode
+    $atts = shortcode_atts([
+        'tipo' => 'main',          // valor por defecto
+    ], $atts);
+
+
 
     $template = '';
     $schema_file = '';
 
-    switch (HANOK_CONFIG) {
+    switch ($atts['tipo']) {
         case 'main':
             $template = 'form.php'; // main - vender - comprar - alquilar - info
             $schema_file = 'form-schema.json';
@@ -42,6 +49,8 @@ function hanok_callback_form_valoracion() {
 
     // Al script que controla el formulario hay que pasarle la url del esquema donde viene la lógica
     wp_enqueue_script( 'hanok-form-control', HANOK_PLUGIN_URL . 'assets/js/form-control.js', [], null, true );
+    wp_enqueue_script( 'hanok-form-otp', HANOK_PLUGIN_URL . 'assets/js/form-tlf-validacion.js', [], null, true );
+
     
     wp_enqueue_script( 'hanok-control-etapas', HANOK_PLUGIN_URL . 'assets/js/form-etapas.js', ['hanok-geolocation'], null, true );
     wp_enqueue_script( 'hanok-integration', HANOK_PLUGIN_URL . 'assets/js/form-integration.js', ['hanok-geolocation'], null, true );

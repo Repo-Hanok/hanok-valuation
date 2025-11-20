@@ -114,8 +114,7 @@ function obtenerDatosForm() {
                 if (resp.value) respuestasForm[p.id] = resp.value
                 break
             case "checkbox": // si es checkbox
-                const check = preg.querySelector('input')
-                respuestasForm[p.id] = check.checked
+                respuestasForm[p.id] = preg.checked
                 break
             default:
                 console.error('Tipo de campo inesperado')
@@ -125,7 +124,7 @@ function obtenerDatosForm() {
     return respuestasForm
 }
 
-
+// creo que esta función no hace nada (¿?)
 function adaptaDatosParaApiVieja(datos) {
 
     const oldData = { // referencia para datos para la API vieja

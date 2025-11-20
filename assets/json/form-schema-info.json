@@ -1,0 +1,272 @@
+{
+    "preguntas": [
+        {
+            "id": "hanok_address_input",
+            "type": "text",
+            "step": 1
+        },
+
+
+
+        {
+            "id": "hanok_relacion_inmueble",
+            "type": "select",
+            "values": [ "propietario", "inquilino", "comprador", "agente" ],
+            "step": 2
+        },
+        {
+            "id": "hanok_motivo_info",
+            "type": "select",
+            "values": [ "vender_medio_plazo", "vender_futuro", "comprar", "info" ],
+            "step": 2
+        },
+
+        {
+            "id": "hanok_comprar",
+            "type": "select",
+            "values": [ "primera_vivienda" , "segunda_residencia" , "cambio_vivienda" , "inversion" ],
+            "step": 3,
+            "hidden" : true
+        },
+        {
+            "id": "hanok_hipoteca",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 3,
+            "hidden": true
+        },
+        {
+            "id": "hanok_tasacion_oficial",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 3,
+            "hidden": true
+        },
+        {
+            "id": "hanok_2_viv_vender",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 3,
+            "hidden": true
+        },
+        {
+            "id": "hanok_precio_esperado",
+            "type": "number",
+            "step": 3
+        },
+
+
+
+        {
+            "id": "hanok_viv_exterior",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 4
+        },
+        {
+            "id": "hanok_tipo_vivienda",
+            "type": "select",
+            "values": [ "piso" , "chalet_adosado" , "casa_independiente" ],
+            "step": 4
+        },
+        {
+            "id": "hanok_estado_inmueble",
+            "type": "select",
+            "values": [ "excelente", "aceptable", "necesita_reforma" ],
+            "step": 4
+        },
+
+        
+
+        {
+            "id": "hanok_superficie",
+            "type": "number",
+            "step": 5
+        },
+        {
+            "id": "hanok_dormitorios",
+            "type": "select",
+            "values": [ "1", "2", "3", "4+" ],
+            "step": 5
+        },
+        {
+            "id": "hanok_wc",
+            "type": "select",
+            "values": [ "1", "2", "3+" ],
+            "step": 5
+        },
+        {
+            "id": "hanok_viv_extras",
+            "type": "select",
+            "values": [ "si", "no" ],
+            "step": 5
+        },
+        {
+            "id": "hanok_trastero",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_garaje",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_terraza",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_ascensor",
+            "type": "checkbox",
+            "step": 5
+        },
+        {
+            "id": "hanok_piscina",
+            "type": "checkbox",
+            "step": 5
+        },
+
+
+
+
+        {
+            "id": "hanok_foco_venta",
+            "type": "select",
+            "values": [ "valor_actual", "aumentar_valor", "ayuda" ],
+            "step": 6
+        },
+        {
+            "id": "hanok_intento_venta_anterior",
+            "type": "select",
+            "values": [ "si_solo", "si_agencia", "no" ],
+            "step": 6
+        },
+        {
+            "id": "hanok_proceso_venta",
+            "type": "select",
+            "values": [ "vender_rapido", "mejor_precio", "proceso_sencillo" ],
+            "step": 6
+        },
+
+
+        {
+            "id": "hanok_nombre",
+            "type": "text",
+            "step": 7
+        },
+        {
+            "id": "hanok_email",
+            "type": "email",
+            "step": 7
+        },
+        {
+            "id": "hanok_telefono",
+            "type": "tel",
+            "step": 7
+        },
+        {
+            "id": "aceptacion-politica",
+            "type": "checkbox",
+            "step": 7
+        },
+        {
+            "id": "aceptacion-comercial",
+            "type": "checkbox",
+            "step": 7
+        },
+        {
+            "id": "aceptacion-partners",
+            "type": "checkbox",
+            "step": 7
+        }
+    ],
+
+
+
+
+
+
+
+
+
+
+
+    "reglas": [
+        
+        
+        
+        {
+            "target": "hanok_comprar",
+            "showWhen": {
+                "eq": [ "hanok_motivo_info" , "comprar" ]
+            }
+
+        },
+        {
+            "target": "hanok_hipoteca",
+            "showWhen": {
+                "or": [
+                    { "eq": [ "hanok_comprar" , "primera_vivienda" ]},
+                    {"eq": [ "hanok_comprar" , "segunda_residencia" ]},
+                    {"eq": [ "hanok_comprar" , "inversion" ]}
+                ]
+            }
+        },
+        {
+            "target": "hanok_tasacion_oficial",
+            "showWhen": {
+                "eq": [ "hanok_hipoteca" , "si" ]
+            }
+        },
+        {
+            "target": "hanok_2_viv_vender",
+            "showWhen": {
+                "eq": [ "hanok_comprar" , "cambio_vivienda" ]
+            }
+        },
+        {
+            "target": "hanok_precio_esperado",
+            "showWhen": {
+                "or": [
+                    {"eq": [ "hanok_motivo_info", "vender_medio_plazo" ]},
+                    {"eq": [ "hanok_motivo_info", "vender_futuro" ]},
+                    {"eq": [ "hanok_2_viv_vender", "si" ]}
+                ]
+            }
+        },
+        {
+            "target": "hanok_extras",
+            "showWhen": {
+                "eq": [ "hanok_viv_extras", "si" ]
+            }
+        },
+        {
+            "target": "hanok_foco_venta",
+            "showWhen": {
+                "or": [
+                    {"eq": [ "hanok_motivo_info", "vender_medio_plazo" ]},
+                    {"eq": [ "hanok_motivo_info", "vender_futuro" ]}
+                ]            
+            }
+        },
+        {
+            "target": "hanok_intento_venta_anterior",
+            "showWhen": {
+                "or": [
+                    {"eq": [ "hanok_motivo_info", "vender_medio_plazo" ]},
+                    {"eq": [ "hanok_motivo_info", "vender_futuro" ]}
+                ]            
+            }
+        },
+        {
+            "target": "hanok_proceso_venta",
+            "showWhen": {
+                "or": [
+                    {"eq": [ "hanok_motivo_info", "vender_medio_plazo" ]},
+                    {"eq": [ "hanok_motivo_info", "vender_futuro" ]}
+                ]            
+            }
+        }
+    ]
+}
