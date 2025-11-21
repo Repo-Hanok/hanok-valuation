@@ -159,7 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(e.target)
         if(e.target.disabled) return
         formularioHanok.hidden = true
-        document.getElementById('hanok_procesando_datos').hidden = false
+        const feedbackEl = document.getElementById('hanok_procesando_datos')
+        feedbackEl.hidden = false
+        feedbackEl.classList.add('is-loading')
     }
 
 

@@ -52,7 +52,8 @@
         {
             "id": "hanok_precio_esperado",
             "type": "number",
-            "step": 3
+            "step": 3,
+            "hidden": true
         },
 
 

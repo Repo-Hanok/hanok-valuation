@@ -76,6 +76,11 @@
       </label>
     </fieldset>
 
+    <label for="hanok_precio_esperado_" id="hanok_precio_esperado" hidden>
+      ¿Tienes un precio en mente por el que te gustaría vender?
+      <input type="number" id="hanok_precio_esperado_" name="hanok_precio_esperado" min="1" max="10000000">
+    </label>
+
   </div>
 
   <!-- /////// -->
@@ -148,10 +153,7 @@
       </label>
     </fieldset>
 
-    <label for="hanok_precio_esperado_" id="hanok_precio_esperado" hidden>
-      ¿Tienes un precio en mente por el que te gustaría vender?
-      <input type="number" id="hanok_precio_esperado_" name="hanok_precio_esperado" min="1" max="10000000">
-    </label>
+    
   </div>
 
   <!-- /////// -->

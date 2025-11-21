@@ -130,6 +130,9 @@
   font-size: 17px;
   display: inline-block;
 }
+#form_valoracion_vivienda legend[hidden], .form-paso label[hidden] {
+  display: none;
+}
 
 .hanok_radio_input label{
   display:inline-flex;
@@ -357,8 +360,48 @@ fieldset details {
     }
 }
 
+/* ===========
+   Feedback envío
+   =========== */
 
-@keyframes hanok-spin{ to { transform:rotate(360deg);} }
+#hanok_procesando_datos {
+  padding: 2rem;
+  font-weight: bold;
+  display: inline-flex;
+  flex-direction: column;  /* icono arriba, texto abajo */
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;            /* separación entre icono y texto */
+  text-align: center;
+  color: var(--text);
+}
+
+#hanok_procesando_datos.is-loading::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+}
+
+/* El spinner en un pseudo-elemento independiente */
+#hanok_procesando_datos.is-loading::before {
+  border-radius: 50%;
+  border: 3px solid #d6e3ee;
+  border-top-color: var(--primary);
+  animation: hanok-spin .9s linear infinite;
+}
+
+#hanok_procesando_datos.is-error {
+  color: red;
+}
+
+/* estado error: icono distinto */
+#hanok_procesando_datos.is-error::before {
+  content: "⚠️";
+}
+
+@keyframes hanok-spin {
+  to { transform: rotate(360deg); }
+}
 
 /* ===========
    Responsivo

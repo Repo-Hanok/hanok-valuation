@@ -3,6 +3,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const hanokForm = document.getElementById('form_valoracion_vivienda')
+    const feedbackEl = document.getElementById('hanok_procesando_datos')
+
+    if (!hanokForm || !feedbackEl) {
+        console.error('No se encontró el formulario o el elemento de feedback');
+        return;
+    }
 
     // listener para el envío del formulario
     hanokForm.addEventListener('submit', async (e) => {
@@ -20,9 +26,23 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (!res.ok) {
-        const txt = await res.text();
-        console.error('Error REST', res.status, txt);
-        alert('No se pudo procesar la solicitud.');
+        let msg = 'No se pudo procesar la solicitud.';
+        try {
+          // por si viene JSON con mensaje
+          const errJson = await res.json();
+          msg = errJson?.message || errJson?.data?.message || msg;
+        } catch {
+          // fallback a texto plano
+          const txt = await res.text();
+          if (txt) msg = txt;
+          msg = 'Error: ' + msg + '. Por favor, inténtalo de nuevo más tarde.';
+        }
+
+        console.error('Error REST', res.status, msg);
+
+        feedbackEl.classList.remove('is-loading');
+        feedbackEl.classList.add('is-error');
+        feedbackEl.textContent = msg;
         return;
       }
 
@@ -87,6 +107,7 @@ function obtenerDatosForm() {
     // referencia a preguntas y respuestas
     const preguntasForm = formSchema.preguntas
     const respuestasForm = {...window.hanok.direccionSeleccionada}
+    const formElement = document.getElementById('form_valoracion_vivienda')
 
     respuestasForm.timestamp = new Date().toJSON()
     respuestasForm.url = window.location.href
