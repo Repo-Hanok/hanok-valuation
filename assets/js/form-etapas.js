@@ -106,8 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const resto = etapa.querySelectorAll(':scope > label:not([hidden])')
 
         const radioCheck = Array.from(radios).every((r) => {
-            if(r.classList.contains('hanok_check_group')) return true
+            if(r.classList.contains('hanok_check_group')) {
+                // caso especial: grupo de checkboxes (política de privacidad)
+                const politicaPrivacidad = r.querySelector('#aceptacion-politica')
+                if(politicaPrivacidad) {
+                    console.log('validando política de privacidad: ', politicaPrivacidad.checked)
+                    return politicaPrivacidad.checked
+                }
+                return true
+
+            }
             if(r.id !== 'hanok_telefono') {
+                console.log('validando radio/checkbox: ', r)
                 return Array.from(r.querySelectorAll('input')).some(i => i.checked)
             } else {
                 return window.hanok.tlfOK
@@ -115,6 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 
         const restoCheck = Array.from(resto).every((r) => {
+            // log para evaluar que va bien
+            console.log('validando input texto: ', r)
             const rInput = r?.querySelector('input')
             return ( rInput?.value && rInput.value.trim() !== "" )
         })
@@ -132,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function botonSiguiente() {
-
+        console.log('siguiente: ', validarEtapa(), etapaActual)
         if(validarEtapa()){
 
             actualizarEtapa(1)
@@ -148,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(()=>{
             const disabled = !validarEtapa()
+            console.log('lockButtons: ', disabled)
             enviar.disabled = disabled
             siguiente.disabled = disabled
         },100)

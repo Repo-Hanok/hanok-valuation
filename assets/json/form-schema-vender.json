@@ -202,6 +202,17 @@
             "id": "aceptacion-politica",
             "type": "checkbox",
             "step": 7
+        },
+        {
+            "id": "aceptacion-comercial",
+            "type": "checkbox",
+            "step": 4
+        }
+        ,
+        {
+            "id": "aceptacion-partners",
+            "type": "checkbox",
+            "step": 4
         }
     ],
 

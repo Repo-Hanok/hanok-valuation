@@ -160,6 +160,18 @@
             "type": "checkbox",
             "step": 4
         }
+        ,
+        {
+            "id": "aceptacion-comercial",
+            "type": "checkbox",
+            "step": 4
+        }
+        ,
+        {
+            "id": "aceptacion-partners",
+            "type": "checkbox",
+            "step": 4
+        }
     ],
 
 
