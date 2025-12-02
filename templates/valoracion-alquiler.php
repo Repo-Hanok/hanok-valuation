@@ -116,7 +116,7 @@
 
                 <b>
 
-                  <?= number_format($precio_m2, 0, ',', '.') ?> €/m² * mes
+                  <?= number_format($precio_m2, 0, ',', '.') ?> €/m² al mes
 
                 </b>
 
