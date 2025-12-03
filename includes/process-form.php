@@ -20,16 +20,15 @@ add_action('rest_api_init', function () {
 
 
 
-  register_rest_route('hanok/v1', '/valuation', [
+    register_rest_route('hanok/v1', '/valuation', [
 
-    'methods'  => 'POST',
+        'methods'  => 'POST',
 
-    'callback' => 'hanok_rest_valuation',
+        'callback' => 'hanok_rest_valuation',
 
-    'permission_callback' => '__return_true', // verificamos nonce dentro
+        'permission_callback' => '__return_true', // verificamos nonce dentro
 
-  ]);
-
+    ]);
 });
 
 
@@ -38,7 +37,8 @@ add_action('rest_api_init', function () {
 
 // callback para la ruta
 
-function hanok_rest_valuation(WP_REST_Request $req) {
+function hanok_rest_valuation(WP_REST_Request $req)
+{
 
 
 
@@ -62,7 +62,7 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
     $nonce = $h ?: $p ?: ($j['_hanok_nonce'] ?? null); // aquí la J es un valor residual, más adelante lo quitamos
 
-    error_log('VERIFY:' . ( wp_verify_nonce($nonce, 'hanok_valuation_form') ? 'OK' : 'FAIL'));
+    error_log('VERIFY:' . (wp_verify_nonce($nonce, 'hanok_valuation_form') ? 'OK' : 'FAIL'));
 
     // --- FIN LOGS ---
 
@@ -70,10 +70,9 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
     // verificamos el nonce, esto falla cuando estás logueado por un tema de credenciales
 
-    if ( !$nonce || !wp_verify_nonce($nonce, 'hanok_valuation_form') ) {
+    if (!$nonce || !wp_verify_nonce($nonce, 'hanok_valuation_form')) {
 
         return new WP_Error('forbidden', 'Nonce inválido', ['status' => 403]);
-
     }
 
 
@@ -90,7 +89,7 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
      * "hanok_nombre" --> api nueva   /   "client_name" --> api vieja
 
-    */
+     */
 
     if (isset($data['hanok_nombre'])) {
 
@@ -108,8 +107,7 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
             $tipo_operacion = 1;
 
-            error_log('alquilar');
-
+            // error_log('alquilar');
         }
 
 
@@ -143,18 +141,22 @@ function hanok_rest_valuation(WP_REST_Request $req) {
         if (!$response) {
 
             return new WP_Error('cassandra_error', 'No se pudo obtener la valoración', ['status' => 502]);
-
         }
 
 
 
-        
+
 
         // formateamos los datos
 
         $vars = format_data_cassandra($response); // ['avm_valuation'=>..., 'comparables'=>...]
 
-        
+        // si es valoración de alquiler, ajustamos el nombre de la variable
+        if ($tipo_operacion === 1 && isset($vars['avm_valuation'])) {
+            $vars['avm_valuation_alq'] = $vars['avm_valuation'];
+            unset($vars['avm_valuation']);
+        }
+
 
         // enviamos los datos a Active Campaign
 
@@ -164,7 +166,7 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
         ]);
 
-        
+
 
         $res_ac = fetch_api_active_campaign(ACTIVE_CAMPAIGN_URL, $data_AC);
 
@@ -176,13 +178,13 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
 
 
-        
+
 
         // datos extra para la plantilla del informe
 
         $aux_data = [
 
-            'calle' => $data['calle'].' '. $data['num'].', '.$data['ciudad'],
+            'calle' => $data['calle'] . ' ' . $data['num'] . ', ' . $data['ciudad'],
 
             'area' => floatval($data['hanok_superficie']),
 
@@ -206,7 +208,7 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
 
 
-//error_log(print_r($vars, true));
+        //error_log(print_r($vars, true));
 
 
 
@@ -237,13 +239,6 @@ function hanok_rest_valuation(WP_REST_Request $req) {
             'redirect' => $url,
 
         ], 200);
-
-
-
-
-
-
-
     } else if (isset($data['client_name'])) {
 
 
@@ -287,7 +282,6 @@ function hanok_rest_valuation(WP_REST_Request $req) {
             error_log('(X) Error en llamada AWS: ' . $response->get_error_message());
 
             return new WP_Error('aws_error', 'Error al contactar con AWS', ['status' => 500]);
-
         }
 
 
@@ -305,7 +299,6 @@ function hanok_rest_valuation(WP_REST_Request $req) {
         if ($code !== 200) {
 
             return new WP_Error('aws_error', 'Respuesta no válida de AWS', ['status' => $code]);
-
         }
 
 
@@ -317,9 +310,6 @@ function hanok_rest_valuation(WP_REST_Request $req) {
             'redirect' => '/gracias',
 
         ], 200);
-
-
-
     } else {
 
         // Error
@@ -334,12 +324,8 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
             ['status' => 400]
 
-        );  
-
+        );
     }
-
-
-
 }
 
 
@@ -348,7 +334,8 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
 // funcion auxiliar para calcular precio por m2
 
-function calcular_medias($payload) {
+function calcular_medias($payload)
+{
 
 
 
@@ -393,9 +380,6 @@ function calcular_medias($payload) {
             ? $local_price / $area
 
             : null;
-
-
-
     }, is_array($comparables) ? $comparables : []));
 
 
@@ -437,6 +421,4 @@ function calcular_medias($payload) {
 
 
     return array_merge($payload, $metricas);
-
 }
-
