@@ -1,8 +1,16 @@
+    // Validación de teléfono con OTP
+
     document.addEventListener('DOMContentLoaded', () => {
+
       let otpSessionToken = null;
+      // Función auxiliar para selección rápida de elementos por ID #
       const $ = (id) => document.getElementById(id);
       const msg = $('hanok_msg');
 
+
+      /* evento para enviar el teléfono Y RECIBIR OTP
+        manda el teléfono a la API de wordpress y muestra feedback
+      */
       $('hanok_sendOtp').onclick = async () => {
         const telefono = $('hanok_tel').value.trim();
         if (!telefono) return msg.textContent = 'Introduce un número.';
@@ -23,6 +31,9 @@
         }
       };
 
+      /* evento para verificar el OTP ingresado
+        manda el código y el token de sesión a la API de wordpress y muestra feedback
+       */
       $('hanok_verifyOtp').onclick = async () => {
         const code = $('hanok_otp').value.trim();
         if (!code) return msg.textContent = 'Introduce el código.';
