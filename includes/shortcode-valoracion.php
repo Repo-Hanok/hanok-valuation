@@ -51,7 +51,7 @@ function hanok_callback_info_valoracion() {
 
 
 
-    $hanok_data = get_transient("hanok_report_$token");
+    $hanok_data = get_site_transient("hanok_report_$token");
 
     if (!$hanok_data) {
 

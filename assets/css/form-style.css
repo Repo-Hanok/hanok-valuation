@@ -26,7 +26,9 @@
 * {
   box-sizing: border-box;
 }
-
+*[hidden] {
+    display: none !important;
+}
 /* ===========
    Layout base
    =========== */
@@ -73,7 +75,9 @@
 .form-paso[hidden] {
     display: none;
 }
-
+#form-paso-1 {
+    justify-content: center !important;
+}
 
 /* Fondo y contenedor suave */
 #form_valoracion_vivienda{

@@ -1,4 +1,4 @@
-    document.addEventListener('DOMContentLoaded', () => {
+    /*document.addEventListener('DOMContentLoaded', () => {
       let otpSessionToken = null;
       const $ = (id) => document.getElementById(id);
       const msg = $('hanok_msg');
@@ -40,4 +40,4 @@
           $('hanok_tel').dispatchEvent('click')
         }
       };
-    });
+    });*/

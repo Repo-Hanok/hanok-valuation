@@ -30,6 +30,8 @@ v: "weekly",
   // Evita registrar listeners dos veces si el script se reinyecta (Complianz, etc.)
   if (hanok._geoInit) return;
   hanok._geoInit = true;
+
+  
   hanok.tlfOK = false // esto para la validación del otp (está mal aquí pero ahora tengo prisa)
 
 

@@ -425,8 +425,10 @@
       <input type="email" id="hanok_email_" name="hanok_email" placeholder="Correo electrónico">
     </label>
 
-    <!-- TELEFONO -->
+<!-- TELEFONO -->
     <fieldset id="hanok_telefono" style="">
+              <input type="tel" id="hanok_tel" name="hanok_tel" placeholder="Tu teléfono" style="">
+<!--
       <legend>Validar teléfono</legend>
 
       <div id="hanok_step1">
@@ -440,12 +442,13 @@
       </div>
 
       <p id="hanok_msg" style=""></p>
+-->
     </fieldset>
 
     <fieldset class="tratamientos-sutil hanok_check_group">
       <label for="aceptacion-politica">
         <input type="checkbox" name="politica" id="aceptacion-politica" required>
-        He leído y acepto la
+        (*) He leído y acepto la
         <a href="/politica-privacidad" target="_blank" rel="noreferrer noopener">Política de Privacidad</a>
         <img class="icono-privacidad popup-privacidad sg-popup-id-4144" src="http://valoracionvivienda.com/wp-content/uploads/2024/10/icono-priv.svg" alt="Icono de información">
       </label>
