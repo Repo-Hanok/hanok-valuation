@@ -58,7 +58,7 @@ function hanok_phone_verify(WP_REST_Request $req) {
 
   $code    = sanitize_text_field($data['code'] ?? '');
 
-error_log('$step 2 '.$session);
+  //error_log('$step 2 '.$session);
 
   if (!$session || !$code) {
 
@@ -95,8 +95,8 @@ error_log('$step 2 '.$session);
 
 
   // Verificar OTP en proveedor
+  $verified = hanok_verify_otp_sms($pending['phone'] ?? null, $code);
 
-  $verified = hanok_verify_otp_sms($pending['otp_id'] ?? null, $code);
 
   if (empty($verified['ok'])) {
 
@@ -133,88 +133,59 @@ error_log('$step 2 '.$session);
 
 
 /**
-
- * Verifica el código recibido contra el otp_id retornado al enviar.
-
+ * Verifica el OTP usando Twilio Verify (VerificationCheck).
+ *
+ * @param string $phone Teléfono
+ * @param string $code  Código OTP
  */
+function hanok_verify_otp_sms($phone, $code) {
+  if (!$phone || !$code) return ['ok'=>false];
 
-function hanok_verify_otp_sms($otp_id, $code) {
-
-  if (!$otp_id || !$code) return ['ok'=>false];
-
-
-
-  $customer_key = '368964';
-
-  $api_key = 'MZGv5AuT42LqPswmo6j8WJpYmdNSOnEt';
-
-  $timestamp = round(microtime(true) * 1000);
-
-  $auth = hash('sha512', $customer_key . $timestamp . $api_key);
+  // Credenciales por variables de entorno
+  $apiKey    = defined('TWILIO_API_KEY') ? TWILIO_API_KEY : null;
+  $apiSecret = defined('TWILIO_API_SECRET') ? TWILIO_API_SECRET : null;
+  $verifySid = defined('TWILIO_VERIFY_SERVICE_SID') ? TWILIO_VERIFY_SERVICE_SID : null;
 
 
+  // añadimos +34 al teléfono si no lo tiene
+  $to = (strpos($phone, '+') === 0) ? $phone : ('+34' . preg_replace('/\D+/', '', $phone));
 
-  $body = [
+  $url = "https://verify.twilio.com/v2/Services/{$verifySid}/VerificationCheck";
 
-    'txId'  => $otp_id,
-
-    'token' => $code,
-
+  // Preparar y enviar solicitud
+  $args = [
+    'headers' => [
+    'Authorization' => 'Basic ' . base64_encode($apiKey . ':' . $apiSecret),
+      'Content-Type'  => 'application/x-www-form-urlencoded',
+    ],
+    'body'    => [
+      'To'   => $to,
+      'Code' => $code,
+    ],
+    'timeout' => 15,
   ];
 
-error_log('verifica otp');
-
-  $response = wp_remote_post('https://login.xecurify.com/moas/api/auth/validate', [
-
-    'headers' => [
-
-      'Content-Type'  => 'application/json',
-
-      'Customer-Key'  => $customer_key,
-
-      'Timestamp'     => $timestamp,
-
-      'Authorization' => $auth,
-
-    ],
-
-    'body'    => wp_json_encode($body),
-
-    'timeout' => 15,
-
-  ]);
-
-
+  $response = wp_remote_post($url, $args);
 
   if (is_wp_error($response)) {
-
-    error_log('OTP validate error: ' . $response->get_error_message());
-
+    error_log('[OTP VERIFY] Twilio request error: ' . $response->get_error_message());
     return ['ok'=>false];
-
   }
 
-
-
+  $http = (int) wp_remote_retrieve_response_code($response);
   $data = json_decode(wp_remote_retrieve_body($response), true);
 
-  if (!empty($data['status']) && $data['status'] === 'SUCCESS') {
+  error_log('[OTP VERIFY] Twilio HTTP ' . $http . ' body: ' . wp_json_encode($data));
 
-
-
-    error_log(print_r($data, true));
-
-
-
+  // Si el código es correcto -> status: approved
+  if ($http >= 200 && $http < 300 && !empty($data['status']) && $data['status'] === 'approved') {
     return ['ok'=>true];
-
   }
 
-
-
-  error_log('OTP validate failed: ' . print_r($data, true));
+  // Cualquier otro caso: incorrecto / expirado / etc.
+  if ($http >= 400) {
+    error_log('[OTP VERIFY] Twilio HTTP error ' . $http . ': ' . print_r($data, true));
+  }
 
   return ['ok'=>false];
-
 }
-

@@ -68,7 +68,9 @@ function hanok_phone_init(WP_REST_Request $req) {
 
   $tel  = isset($data['telefono']) ? hanok_norm_phone($data['telefono']) : '';
 
-error_log('init: '.$tel);
+  error_log('init: '.$tel);
+
+
 
   if (!$tel) {
 
@@ -76,6 +78,7 @@ error_log('init: '.$tel);
 
   }
 
+  delete_site_transient('hanok_phone_' . md5('722312303'));
 
 
   // 1) Duplicado 3 días
@@ -179,12 +182,11 @@ error_log('init: '.$tel);
 function hanok_send_otp_sms($phone_norm) {
 
 
-  $to = '+34' . $phone_norm; // añadir prefijo España
-  $accountSid = getenv('TWILIO_ACCOUNT_SID');        // AC...
-  $apiKey     = getenv('TWILIO_API_KEY');            // SK...
-  $apiSecret  = getenv('TWILIO_API_SECRET');         // ...
-  $serviceSid = getenv('TWILIO_SERVICE_SID'); // VA...
-  $url = "https://verify.twilio.com/v2/Services/{$serviceSid}/Verifications";
+  $to = '+34' . $phone_norm;                              // añadir prefijo España
+  $apiKey    = defined('TWILIO_API_KEY') ? TWILIO_API_KEY : null;
+  $apiSecret = defined('TWILIO_API_SECRET') ? TWILIO_API_SECRET : null;
+  $verifySid = defined('TWILIO_VERIFY_SERVICE_SID') ? TWILIO_VERIFY_SERVICE_SID : null;
+  $url = "https://verify.twilio.com/v2/Services/{$verifySid}/Verifications";
 
   $response = wp_remote_post($url, [
     'headers' => [

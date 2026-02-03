@@ -120,7 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 //console.log('validando radio/checkbox: ', r)
                 return Array.from(r.querySelectorAll('input')).some(i => i.checked)
             } else {
-                return window.hanok.tlfOK
+                // return window.hanok.tlfOK  // antiguo control vía validación por OTP
+                // comprobamos el campo  de teléfono y validamos si tiene algún valor
+                        const tlfInput = r.querySelector('input')
+                        console.log('validando input teléfono: ', tlfInput?.value)
+                        return ( tlfInput?.value && tlfInput.value.trim() !== "" )
             }
         })
 
@@ -160,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(()=>{
             const disabled = !validarEtapa()
-            //console.log('lockButtons: ', disabled)
             enviar.disabled = disabled
             siguiente.disabled = disabled
         },100)

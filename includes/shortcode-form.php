@@ -20,24 +20,28 @@ function hanok_callback_form_valoracion($atts) {
 
     switch ($atts['tipo']) {
         case 'main':
-            $template = 'form.php'; // main - vender - comprar - alquilar - info
+            $template = 'form.php'; // main 
             $schema_file = 'form-schema.json';
             break;
         case 'vender':
-            $template = 'form-vender.php'; // main - vender - comprar - alquilar - info
+            $template = 'form-vender.php'; // vender
             $schema_file = 'form-schema-vender.json';
             break;
         case 'comprar':
-            $template = 'form-comprar.php'; // main - vender - comprar - alquilar - info
+            $template = 'form-comprar.php'; // comprar
             $schema_file = 'form-schema-comprar.json';
             break;
         case 'alquilar':
-            $template = 'form-alquilar.php'; // main - vender - comprar - alquilar - info
+            $template = 'form-alquilar.php'; // alquilar
             $schema_file = 'form-schema-alquilar.json';
             break;
         case 'info':
-            $template = 'form-info.php'; // main - vender - comprar - alquilar - info
+            $template = 'form-info.php'; // info
             $schema_file = 'form-schema-info.json';
+            break;
+        case 'test':
+            $template = 'form-test.php'; // test
+            $schema_file = 'form-schema-test.json';
             break;
     } 
 
