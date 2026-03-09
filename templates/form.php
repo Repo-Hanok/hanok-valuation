@@ -425,8 +425,10 @@
       <input type="email" id="hanok_email_" name="hanok_email" placeholder="Correo electrónico">
     </label>
 
-    <!-- TELEFONO -->
+<!-- TELEFONO -->
     <fieldset id="hanok_telefono" style="">
+              <input type="tel" id="hanok_tel" name="hanok_tel" placeholder="Tu teléfono" style="">
+<!--
       <legend>Validar teléfono</legend>
 
       <div id="hanok_step1">
@@ -440,6 +442,7 @@
       </div>
 
       <p id="hanok_msg" style=""></p>
+-->
     </fieldset>
 
     <fieldset class="tratamientos-sutil hanok_check_group">

@@ -6,10 +6,10 @@
 
 <div id="mapa_valoracion_vivienda"></div>
 
-<form id="form_valoracion_vivienda" class="vender" method="post">
+<form id="form_valoracion_vivienda" class="test" method="post">
 
   <div id="hanok_step_indicators">
-    <h1 id="hanok_titulo">Valora tu vivienda</h1>
+    <h1 id="hanok_titulo">TEST de formulario de valoración</h1>
   </div>
 
   <?php echo $nonce_field; ?>

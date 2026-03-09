@@ -68,7 +68,9 @@ function hanok_phone_init(WP_REST_Request $req) {
 
   $tel  = isset($data['telefono']) ? hanok_norm_phone($data['telefono']) : '';
 
-error_log('init: '.$tel);
+  error_log('init: '.$tel);
+
+
 
   if (!$tel) {
 
@@ -76,6 +78,7 @@ error_log('init: '.$tel);
 
   }
 
+  delete_site_transient('hanok_phone_' . md5('722312303'));
 
 
   // 1) Duplicado 3 días
@@ -100,7 +103,7 @@ error_log('init: '.$tel);
 
   // 2) Enviar OTP
 
-  $send = hanok_send_otp_sms($tel); // ← integra MiniOrange aquí
+  $send = hanok_send_otp_sms($tel);
 
   if (empty($send['ok'])) {
 
@@ -178,89 +181,46 @@ error_log('init: '.$tel);
 
 function hanok_send_otp_sms($phone_norm) {
 
-  $customer_key = '368964';
 
-  $api_key = 'MZGv5AuT42LqPswmo6j8WJpYmdNSOnEt';
+  $to = '+34' . $phone_norm;                              // añadir prefijo España
+  $apiKey    = defined('TWILIO_API_KEY') ? TWILIO_API_KEY : null;
+  $apiSecret = defined('TWILIO_API_SECRET') ? TWILIO_API_SECRET : null;
+  $verifySid = defined('TWILIO_VERIFY_SERVICE_SID') ? TWILIO_VERIFY_SERVICE_SID : null;
+  $url = "https://verify.twilio.com/v2/Services/{$verifySid}/Verifications";
 
-  $timestamp = round(microtime(true) * 1000);
-
-  $auth = hash('sha512', $customer_key . $timestamp . $api_key);
-
-
-
-  $body = [
-
-    'customerKey'     => $customer_key,
-
-    'phone'           => '+34' . $phone_norm, // formato E.164
-
-    'authType'        => 'SMS',
-
-    'transactionName' => 'CUSTOM-OTP-VERIFICATION',
-
-  ];
-
-
-
-error_log('send_otp: '.$phone_norm);
-
-
-
-  $response = wp_remote_post('https://login.xecurify.com/moas/api/auth/challenge', [
-
+  $response = wp_remote_post($url, [
     'headers' => [
-
-      'Content-Type'  => 'application/json',
-
-      'Customer-Key'  => $customer_key,
-
-      'Timestamp'     => $timestamp,
-
-      'Authorization' => $auth,
-
+      // Basic auth con API Key (SK:SECRET)
+      'Authorization' => 'Basic ' . base64_encode($apiKey . ':' . $apiSecret),
+      'Content-Type'  => 'application/x-www-form-urlencoded',
     ],
-
-    'body'    => wp_json_encode($body),
-
+    'body' => [
+      'To'      => $to,
+      'Channel' => 'sms',
+    ],
     'timeout' => 20,
-
   ]);
 
 
+  error_log('TWILIO HTTP: ' . wp_remote_retrieve_response_code($response));
+  error_log('TWILIO BODY: ' . wp_remote_retrieve_body($response));
+
 
   if (is_wp_error($response)) {
-
-    error_log('OTP send error: ' . $response->get_error_message());
-
-    return ['ok'=>false];
-
+    error_log('Twilio send error: ' . $response->get_error_message());
+    return ['ok' => false];
   }
 
-
-
+  $code = wp_remote_retrieve_response_code($response);
   $data = json_decode(wp_remote_retrieve_body($response), true);
 
-
-
-  
-
-  if (!empty($data['status']) && $data['status'] === 'SUCCESS' && !empty($data['txId'])) {
-
-
-
-error_log(print_r($data, true));
-
-
-
-    return ['ok'=>true, 'otp_id'=>$data['txId']];
-
+  if ($code >= 200 && $code < 300 && !empty($data['status']) && $data['status'] === 'pending') {
+    // otp_id no es necesario para Twilio Check, pero lo guardamos por compatibilidad
+    return ['ok' => true, 'otp_id' => $data['sid'] ?? null];
   }
 
-
-
-  error_log('OTP send failed: ' . print_r($data, true));
-
-  return ['ok'=>false];
+  error_log('Twilio send failed: ' . print_r(['http'=>$code,'body'=>$data], true));
+  return ['ok' => false];
 
 }
 

@@ -618,37 +618,25 @@
 
 
 
-  <!-- TELEFONO -->
+<!-- TELEFONO -->
+    <fieldset id="hanok_telefono" style="">
+              <input type="tel" id="hanok_tel" name="hanok_tel" placeholder="Tu teléfono" style="">
+<!--
+      <legend>Validar teléfono</legend>
 
-  <fieldset id="hanok_telefono" style="">
+      <div id="hanok_step1">
+        <input type="tel" id="hanok_tel" name="hanok_tel" placeholder="Tu teléfono" style="">
+        <button type="button" id="hanok_sendOtp" style="">Enviar código</button>
+      </div>
 
-    <legend>Validar teléfono</legend>
+      <div id="hanok_step2" style="display:none;">
+        <input type="text" id="hanok_otp" placeholder="Código OTP" style="">
+        <button type="button" id="hanok_verifyOtp" style="">Verificar</button>
+      </div>
 
-
-
-    <div id="hanok_step1">
-
-      <input type="tel" id="hanok_tel" name="hanok_tel" placeholder="Tu teléfono" style="">
-
-      <button type="button" id="hanok_sendOtp" style="">Enviar código</button>
-
-    </div>
-
-
-
-    <div id="hanok_step2" style="display:none;">
-
-      <input type="text" id="hanok_otp" placeholder="Código OTP" style="">
-
-      <button type="button" id="hanok_verifyOtp" style="">Verificar</button>
-
-    </div>
-
-
-
-    <p id="hanok_msg" style=""></p>
-
-  </fieldset>
+      <p id="hanok_msg" style=""></p>
+-->
+    </fieldset>
 
 
 

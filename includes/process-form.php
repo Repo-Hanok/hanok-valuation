@@ -314,7 +314,7 @@ function hanok_rest_valuation(WP_REST_Request $req) {
 
             'ok'       => true,
 
-            'redirect' => '/gracias',
+            'redirect' => 'https://valoracionvivienda.com/gracias',
 
         ], 200);
 

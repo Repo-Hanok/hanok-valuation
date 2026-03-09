@@ -117,16 +117,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             }
             if(r.id !== 'hanok_telefono') {
-                console.log('validando radio/checkbox: ', r)
+                //console.log('validando radio/checkbox: ', r)
                 return Array.from(r.querySelectorAll('input')).some(i => i.checked)
             } else {
-                return window.hanok.tlfOK
+                // caso especial: validación de teléfono con OTP
+                // comprobamos que el campo tenga la clase 'doi'
+                const aplicaOTP = r.classList.contains('doi')
+                console.log("otp required:", aplicaOTP)
+                // si la tiene, hay que aplicar validación OTP
+                if(aplicaOTP) {
+                    return window.hanok.tlfOK
+                } else {
+                    const tlfInput = r.querySelector('input')
+                    console.log('validando input teléfono: ', tlfInput?.value)
+                    return ( tlfInput?.value && tlfInput.value.trim() !== "" )
+
+                    // si no la tiene, sólo comprobamos que tenga algún valor
+                }
             }
         })
 
         const restoCheck = Array.from(resto).every((r) => {
             // log para evaluar que va bien
-            console.log('validando input texto: ', r)
+            //console.log('validando input texto: ', r)
             const rInput = r?.querySelector('input')
             return ( rInput?.value && rInput.value.trim() !== "" )
         })
@@ -144,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function botonSiguiente() {
-        console.log('siguiente: ', validarEtapa(), etapaActual)
+        //console.log('siguiente: ', validarEtapa(), etapaActual)
         if(validarEtapa()){
 
             actualizarEtapa(1)
@@ -160,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(()=>{
             const disabled = !validarEtapa()
-            console.log('lockButtons: ', disabled)
+            //console.log('lockButtons: ', disabled)
             enviar.disabled = disabled
             siguiente.disabled = disabled
         },100)
@@ -169,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function ultimaFase(e) {
 
-        console.log(e.target)
+        //console.log(e.target)
         if(e.target.disabled) return
         formularioHanok.hidden = true
         const feedbackEl = document.getElementById('hanok_procesando_datos')
