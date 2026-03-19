@@ -66,6 +66,11 @@
         <input type="radio" id="hanok_anunciada_inmobiliaria" name="hanok_donde_casa_anunciada" value="anunciada_en_inmobiliaria">
         <span>Con una inmobiliaria</span>
       </label>
+
+      <label for="hanok_no_anunciada">
+        <input type="radio" id="hanok_no_anunciada" name="hanok_donde_casa_anunciada" value="no_anunciada">
+        <span>No está anunciada</span>
+      </label>
     </fieldset>
 
     <fieldset id="hanok_venta_exclusiva" class="hanok_radio_input" hidden>
@@ -447,7 +452,7 @@
       </label>
     </fieldset>
 
-    <fieldset id="hanok_canal_contacto" class="hanok_radio_input">
+    <fieldset id="hanok_canal_contacto" class="hanok_radio_input" hidden>
       <legend>¿Cómo prefieres ser contactado?</legend>
 
       <label for="canal_contacto_llamada">
@@ -499,6 +504,18 @@
 
 
     <fieldset class="tratamientos-sutil hanok_check_group">
+      <label for="aceptar-todo">
+        <input type="checkbox" name="aceptar_todo" id="aceptar-todo">
+        Acepto todos los tratamientos de datos.
+        <script>
+          document.getElementById('aceptar-todo').addEventListener('change', function() {
+            const checked = this.checked;
+            document.querySelectorAll('.tratamientos-sutil input[type="checkbox"]').forEach(function(checkbox) {
+              checkbox.checked = checked;
+            });
+          });
+        </script>
+      </label>
       <label for="aceptacion-politica">
         <input type="checkbox" name="politica" id="aceptacion-politica" required>
         (*) He leído y acepto la

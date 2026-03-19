@@ -300,6 +300,27 @@ fieldset details {
   box-shadow:0 10px 18px rgba(0,0,0,.22);
 }
 
+/*******************************/
+#hanok_extras label {
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border: 2px solid #f8f8f8;
+    margin-right: 5px;
+}
+#hanok_extras label:hover {
+    border-color: #e2e8ec;
+    background-color: #e2e8ec;
+}
+#hanok_extras label input {
+    margin-right: 5px;
+}
+#hanok_extras label:has(input:checked) {
+    border-color: var(--primary-light);
+    background-color: #7fbdf840;
+    box-shadow: 0 0 0 2px #7fbdf830;
+}
+
 /* Deshabilitados */
 #contenedor_form_nuevo button[disabled]{
   background:lightgray !important;
@@ -353,6 +374,14 @@ fieldset details {
 /* ===========
    Políticas de Privacidad
    =========== */
+
+
+label[for="aceptar-todo"] {
+    font-size: 18px !important;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #6cb1ef;
+}
+
 
 /* Checkbox políticas */
 .tratamientos-sutil label{

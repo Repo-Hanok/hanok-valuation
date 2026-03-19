@@ -96,7 +96,7 @@ function initIntegration() {
         return oldApiData
     }
 
-    //console.log(formData)
+    console.log(JSON.stringify(formData))
     return formData
 }
 
@@ -135,12 +135,13 @@ function obtenerDatosForm() {
                 if (resp.value) respuestasForm[p.id] = resp.value
                 break
             case "checkbox": // si es checkbox
-                respuestasForm[p.id] = preg.checked
+                respuestasForm[p.id] = preg.checked ? 'sí' : 'no'
                 break
             default:
                 console.error('Tipo de campo inesperado')
         }
     });
+
 
     return respuestasForm
 }
@@ -160,7 +161,10 @@ function adaptaDatosParaApiVieja(datos) {
         if (EQUIVALENCIAS_NUEVA_VIEJA[k]) {
             oldData[EQUIVALENCIAS_NUEVA_VIEJA[k]] = datos[k]
         }
+        else // si no tiene equivalente, lo añadimos tal cual (para que no se pierda nada que pueda ser útil en el futuro)
+            oldData[k] = datos[k]
     })
+    console.log(JSON.stringify(oldData))
 
     return oldData
 }

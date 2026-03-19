@@ -641,7 +641,18 @@
 
 
   <fieldset class="tratamientos-sutil hanok_check_group">
-
+    <label for="aceptar-todo">
+      <input type="checkbox" name="aceptar_todo" id="aceptar-todo">
+      Acepto todos los tratamientos de datos.
+      <script>
+        document.getElementById('aceptar-todo').addEventListener('change', function() {
+          const checked = this.checked;
+          document.querySelectorAll('.tratamientos-sutil input[type="checkbox"]').forEach(function(checkbox) {
+            checkbox.checked = checked;
+          });
+        });
+      </script>
+    </label>
     <label for="aceptacion-politica">
 
       <input type="checkbox" name="politica" id="aceptacion-politica" required>
