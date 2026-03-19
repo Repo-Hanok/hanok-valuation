@@ -15,7 +15,7 @@
         {
             "id": "hanok_donde_casa_anunciada",
             "type": "select",
-            "values": [ "anunciada_en_plataformas" , "anunciada_en_rrss" , "anunciada_en_inmobiliaria" ],
+            "values": [ "anunciada_en_plataformas" , "anunciada_en_rrss" , "anunciada_en_inmobiliaria", "no_anunciada" ],
             "step": 2,
             "hidden": true
         },
