@@ -22,7 +22,7 @@
       <input type="text" id="hanok_address_input_" name="hanok_address_input" value="" required />
     </label>
   </div>
-
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
   <!--////// -->
   <div id="form-paso-2" class="form-paso" data-meta-paso="Dirección" hidden>
 
@@ -32,7 +32,7 @@
     </label>
 
     <fieldset id="hanok_tipo_vivienda" class="hanok_radio_input">
-      <legend>¿Cómo es la vivienda?</legend>
+      <legend>¿Qué tipo de vivienda es?</legend>
 
       <label for="hanok_tipo_vivienda_piso">
         <input type="radio" id="hanok_tipo_vivienda_piso" name="hanok_tipo_vivienda" value="piso" />
@@ -52,6 +52,25 @@
       <label for="hanok_tipo_vivienda_estudio">
         <input type="radio" id="hanok_tipo_vivienda_estudio" name="hanok_tipo_vivienda" value="estudio" />
         <span>Estudio</span>
+      </label>
+    </fieldset>
+
+    <fieldset id="hanok_alquiler_inicio" class="hanok_radio_input">
+      <legend>¿Cuándo te gustaría empezar a alquilarla?</legend>
+
+      <label for="alquiler_inicio_ya">
+        <input type="radio" id="alquiler_inicio_ya" name="hanok_alquiler_inicio" value="ya">
+        <span>Cuanto antes</span>
+      </label>
+
+      <label for="alquiler_inicio_3_6_meses">
+        <input type="radio" id="alquiler_inicio_3_6_meses" name="hanok_alquiler_inicio" value="3_6_meses">
+        <span>En los próximos 3-6 meses</span>
+      </label>
+
+      <label for="alquiler_inicio_+6_meses">
+        <input type="radio" id="alquiler_inicio_+6_meses" name="hanok_alquiler_inicio" value="+6_meses">
+        <span>Dentro de más de 6 meses</span>
       </label>
     </fieldset>
 
@@ -75,7 +94,7 @@
     </fieldset>
 
   </div>
-
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
   <!--////// -->
   <div id="form-paso-3" class="form-paso" data-meta-paso="Dirección" hidden>
     <label for="hanok_superficie_" id="hanok_superficie">
@@ -125,11 +144,6 @@
         <span>3+</span>
       </label>
     </fieldset>
-
-  </div>
-
-  <!--////// -->
-  <div id="form-paso-4" class="form-paso" data-meta-paso="Dirección" hidden>
 
     <fieldset id="hanok_viv_amueblada" class="hanok_radio_input">
       <legend>¿Está amueblada?</legend>
@@ -185,9 +199,12 @@
     </fieldset>
 
   </div>
-
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
   <!--////// -->
-  <div id="form-paso-5" class="form-paso" data-meta-paso="Dirección" hidden>
+ 
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
+  <!--////// -->
+  <div id="form-paso-4" class="form-paso" data-meta-paso="Dirección" hidden>
 
     <fieldset id="hanok_alquiler_parcial" class="hanok_radio_input">
       <legend>¿Quieres alquilar la vivienda entera o por habitaciones?</legend>
@@ -254,43 +271,6 @@
         <span>No lo sé</span>
       </label>
     </fieldset>
-  </div>
-
-  <!--////// -->
-  <div id="form-paso-6" class="form-paso" data-meta-paso="Dirección" hidden>
-
-    <fieldset id="hanok_alquiler_inicio" class="hanok_radio_input">
-      <legend>¿Cuándo te gustaría empezar a alquilarla?</legend>
-
-      <label for="alquiler_inicio_ya">
-        <input type="radio" id="alquiler_inicio_ya" name="hanok_alquiler_inicio" value="ya">
-        <span>Cuanto antes</span>
-      </label>
-
-      <label for="alquiler_inicio_3_6_meses">
-        <input type="radio" id="alquiler_inicio_3_6_meses" name="hanok_alquiler_inicio" value="3_6_meses">
-        <span>En los próximos 3-6 meses</span>
-      </label>
-
-      <label for="alquiler_inicio_+6_meses">
-        <input type="radio" id="alquiler_inicio_+6_meses" name="hanok_alquiler_inicio" value="+6_meses">
-        <span>Dentro de más de 6 meses</span>
-      </label>
-    </fieldset>
-
-    <fieldset id="hanok_interes_ahorro_suministros" class="hanok_radio_input">
-      <legend>¿Estás interesado en ahorrar en tus facturas de suministros (agua, luz, gas, internet…)?</legend>
-
-      <label for="interes_ahorro_suministros_si">
-        <input type="radio" id="interes_ahorro_suministros_si" name="hanok_interes_ahorro_suministros" value="si">
-        <span>Sí</span>
-      </label>
-
-      <label for="interes_ahorro_suministros_no">
-        <input type="radio" id="interes_ahorro_suministros_no" name="hanok_interes_ahorro_suministros" value="no">
-        <span>No</span>
-      </label>
-    </fieldset>
 
     <fieldset id="hanok_interes_agencia_alquiler" class="hanok_radio_input">
       <legend>¿Estás interesado en que una agencia especializada en alquiler gestione el proceso?</legend>
@@ -306,8 +286,10 @@
       </label>
     </fieldset>
   </div>
-
-  <div id="form-paso-7" class="form-paso" data-meta-paso="Datos personales" hidden>
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
+  <!--////// -->
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
+  <div id="form-paso-5" class="form-paso" data-meta-paso="Datos personales" hidden>
 
     <label for="hanok_nombre_" id="hanok_nombre">
       Nombre:
@@ -322,7 +304,7 @@
     <!-- TELEFONO -->
     <fieldset id="hanok_telefono" style="">
               <input type="tel" id="hanok_tel" name="hanok_tel" placeholder="Tu teléfono" style="">
-<!--
+      <!--
       <legend>Validar teléfono</legend>
 
       <div id="hanok_step1">
@@ -336,7 +318,7 @@
       </div>
 
       <p id="hanok_msg" style=""></p>
--->
+      -->
     </fieldset>
 
     <fieldset class="tratamientos-sutil hanok_check_group">

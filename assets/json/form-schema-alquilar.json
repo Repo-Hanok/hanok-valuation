@@ -5,37 +5,22 @@
             "type": "text",
             "step": 1
         },
-
         {
             "id": "hanok_precio_alquiler",
             "type": "number",
             "step": 2
         },
         {
-            "id": "hanok_donde_casa_anunciada",
-            "type": "select",
-            "values": [ "anunciada_en_plataformas" , "anunciada_en_rrss" , "anunciada_en_inmobiliaria" ],
-            "step": 2,
-            "hidden": true
-        },
-        {
-            "id": "hanok_venta_exclusiva",
-            "type": "select",
-            "values": [ "si" , "no" ],
-            "step": 2,
-            "hidden": true
-        },
-        {
-            "id": "hanok_exclusiva_cuantos_meses",
-            "type": "number",
-            "step": 2,
-            "hidden": true
-        },
-        {
             "id": "hanok_tipo_vivienda",
             "type": "select",
             "values": [ "piso" , "chalet_adosado" , "casa_independiente" ],
             "step": 2
+        },
+        {
+            "id": "hanok_alquiler_inicio",
+            "type": "select",
+            "values": [ "ya", "3_6_meses", "+6_meses" ],
+            "step": 6
         },
         {
             "id": "hanok_estado_inmueble",
@@ -127,20 +112,6 @@
             "type": "select",
             "values": [ "si", "no", "no_se" ],
             "step": 5
-        },
-
-
-        {
-            "id": "hanok_alquiler_inicio",
-            "type": "select",
-            "values": [ "ya", "3_6_meses", "+6_meses" ],
-            "step": 6
-        },
-        {
-            "id": "hanok_interes_ahorro_suministros",
-            "type": "select",
-            "values": [ "si", "no" ],
-            "step": 6
         },
         {
             "id": "hanok_interes_agencia_alquiler",

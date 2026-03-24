@@ -49,6 +49,12 @@
             "step": 3
         },
         {
+            "id": "hanok_tipo_vivienda",
+            "type": "select",
+            "values": [ "piso" , "chalet_adosado" , "casa_independiente" ],
+            "step": 4
+        },
+        {
             "id": "hanok_dormitorios",
             "type": "select",
             "values": [ "1", "2", "3", "4+" ],
@@ -60,19 +66,11 @@
             "values": [ "1", "2", "3+" ],
             "step": 3
         },
-
-
         {
-            "id": "hanok_tipo_vivienda",
+            "id": "hanok_viv_exterior",
             "type": "select",
-            "values": [ "piso" , "chalet_adosado" , "casa_independiente" ],
-            "step": 4
-        },
-        {
-            "id": "hanok_antiguedad_viv",
-            "type": "select",
-            "values": [ "nueva" , "segunda_mano" ],
-            "step": 4
+            "values": [ "si", "no" ],
+            "step": 3
         },
         {
             "id": "hanok_estado_inmueble",
@@ -114,21 +112,13 @@
             "type": "checkbox",
             "step": 5
         },
-        {
-            "id": "hanok_cuando_comprar",
-            "type": "select",
-            "values": [ "3_6_meses", "+6_meses" ],
-            "step": 5
-        },
+
         {
             "id": "hanok_interes_ahorro_suministros",
             "type": "select",
             "values": [ "si", "no" ],
             "step": 5
         },
-        
-
-        
         
         {
             "id": "hanok_nombre",

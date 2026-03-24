@@ -53,17 +53,16 @@
             "step": 2,
             "hidden": true
         },
-        
+        {
+            "id": "hanok_proceso_venta",
+            "type": "select",
+            "values": [ "vender_rapido", "mejor_precio", "proceso_sencillo" ],
+            "step": 6
+        },
         
         {
             "id": "hanok_precio_esperado",
             "type": "number",
-            "step": 3
-        },
-        {
-            "id": "hanok_intento_venta_anterior",
-            "type": "select",
-            "values": [ "si_solo", "si_agencia", "no" ],
             "step": 3
         },
         {
@@ -72,12 +71,7 @@
             "values": [ "piso" , "chalet_adosado" , "casa_independiente" ],
             "step": 3
         },
-        {
-            "id": "hanok_relacion_inmueble",
-            "type": "select",
-            "values": [ "propietario", "inquilino", "comprador", "agente" ],
-            "step": 3
-        },
+        
         {
             "id": "hanok_estado_inmueble",
             "type": "select",
@@ -150,36 +144,6 @@
             "values": [ "si", "no" ],
             "step": 5
         },
-
-
-
-        {
-            "id": "hanok_libre_de_hipoteca",
-            "type": "select",
-            "values": [ "si", "no" ],
-            "step": 6
-        },
-        {
-            "id": "hanok_viv_okupada",
-            "type": "select",
-            "values": [ "si", "no" ],
-            "step": 6
-        },
-        {
-            "id": "hanok_proceso_venta",
-            "type": "select",
-            "values": [ "vender_rapido", "mejor_precio", "proceso_sencillo" ],
-            "step": 6
-        },
-        {
-            "id": "hanok_canal_contacto",
-            "type": "select",
-            "values": [ "llamada", "whatsapp", "email" ],
-            "step": 6
-        },
-
-
-
 
         {
             "id": "hanok_nombre",

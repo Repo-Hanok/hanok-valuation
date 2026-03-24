@@ -22,7 +22,7 @@
       <input type="text" id="hanok_address_input_" name="hanok_address_input" value="" required />
     </label>
   </div>
-
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
   <div id="form-paso-2" class="form-paso" data-meta-paso="Interés e info sobre el lead" hidden>
 
     <fieldset id="hanok_cuando_vender" class="hanok_radio_input">
@@ -169,33 +169,33 @@
       </label>
     </fieldset>
 
-  </div>
+    <fieldset id="hanok_proceso_venta" class="hanok_radio_input">
+      <legend>¿Qué es lo que más te interesa en este proceso de venta?</legend>
 
-  <div id="form-paso-3" class="form-paso" data-meta-paso="Tipo de inmueble y su estado" hidden>
+      <label for="proceso_venta_rapido">
+        <input type="radio" id="proceso_venta_rapido" name="hanok_proceso_venta" value="vender_rapido">
+        <span>Vender rápido</span>
+      </label>
+
+      <label for="proceso_venta_precio">
+        <input type="radio" id="proceso_venta_precio" name="hanok_proceso_venta" value="mejor_precio">
+        <span>Obtener el mejor precio</span>
+      </label>
+
+      <label for="proceso_venta_sencillo">
+        <input type="radio" id="proceso_venta_sencillo" name="hanok_proceso_venta" value="proceso_sencillo">
+        <span>Que el proceso sea sencillo</span>
+      </label>
+    </fieldset>
 
     <label for="hanok_precio_esperado_" id="hanok_precio_esperado" hidden>
       Cuál es el precio por el que te gustaría vender tu vivienda?
       <input type="number" id="hanok_precio_esperado_" name="hanok_precio_esperado" min="1" max="10000000" />
     </label>
+  </div>
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
 
-    <fieldset id="hanok_intento_venta_anterior" class="hanok_radio_input" hidden>
-      <legend>¿Has intentado venderla anteriormente?</legend>
-
-      <label for="venta_anterior_si_solo">
-        <input type="radio" id="venta_anterior_si_solo" name="hanok_intento_venta_anterior" value="si_solo">
-        <span>Sí, por mi cuenta</span>
-      </label>
-
-      <label for="venta_anterior_si_agencia">
-        <input type="radio" id="venta_anterior_si_agencia" name="hanok_intento_venta_anterior" value="si_agencia">
-        <span>Sí, por agencia</span>
-      </label>
-
-      <label for="venta_anterior_no">
-        <input type="radio" id="venta_anterior_no" name="hanok_intento_venta_anterior" value="no">
-        <span>No, sería la primera vez</span>
-      </label>
-    </fieldset>
+  <div id="form-paso-3" class="form-paso" data-meta-paso="Tipo de inmueble y su estado" hidden>
 
     <fieldset id="hanok_tipo_vivienda" class="hanok_radio_input">
       <legend>¿Qué tipo de vivienda es?</legend>
@@ -221,30 +221,6 @@
       </label>
     </fieldset>
 
-    <fieldset id="hanok_relacion_inmueble" class="hanok_radio_input" hidden>
-      <legend>¿Qué relación tienes con el inmueble?</legend>
-
-      <label for="rel_inmueble_propi">
-        <input type="radio" id="rel_inmueble_propi" name="hanok_relacion_inmueble" value="propietario">
-        <span>Propietario</span>
-      </label>
-
-      <label for="rel_inmueble_inquilino">
-        <input type="radio" id="rel_inmueble_inquilino" name="hanok_relacion_inmueble" value="inquilino">
-        <span>Inquilino</span>
-      </label>
-
-      <label for="rel_inmueble_comprador">
-        <input type="radio" id="rel_inmueble_comprador" name="hanok_relacion_inmueble" value="comprador">
-        <span>Comprador</span>
-      </label>
-
-      <label for="rel_inmueble_agente">
-        <input type="radio" id="rel_inmueble_agente" name="hanok_relacion_inmueble" value="agente">
-        <span>Agente inmobiliario</span>
-      </label>
-    </fieldset>
-
     <fieldset id="hanok_estado_inmueble" class="hanok_radio_input">
       <legend>¿En qué estado se encuentra la vivienda?</legend>
 
@@ -263,10 +239,6 @@
         <span>Necesita reformas</span>
       </label>
     </fieldset>
-
-  </div>
-
-  <div id="form-paso-4" class="form-paso" data-meta-paso="Tipo de inmueble y su estado" hidden>
 
     <label for="hanok_superficie_" id="hanok_superficie">
       ¿Cuántos metros cuadrados tiene?
@@ -317,8 +289,10 @@
     </fieldset>
 
   </div>
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
 
-  <div id="form-paso-5" class="form-paso" data-meta-paso="Datos personales" hidden>
+  <div id="form-paso-4" class="form-paso" data-meta-paso="Datos personales" hidden>
 
     <fieldset id="hanok_viv_exterior" class="hanok_radio_input">
       <legend>¿La vivienda es exterior?</legend>
@@ -387,93 +361,11 @@
       </label>
     </fieldset>
 
-    <fieldset id="hanok_intento_venta_anterior" class="hanok_radio_input">
-      <legend>¿Has intentado venderla anteriormente?</legend>
-
-      <label for="intento_venta_anterior_si">
-        <input type="radio" id="intento_venta_anterior_si" name="hanok_intento_venta_anterior" value="si">
-        <span>Sí</span>
-      </label>
-
-      <label for="intento_venta_anterior_no">
-        <input type="radio" id="intento_venta_anterior_no" name="hanok_intento_venta_anterior" value="no">
-        <span>No</span>
-      </label>
-    </fieldset>
-
   </div>
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
 
-  <div id="form-paso-6" class="form-paso" data-meta-paso="Datos personales" hidden>
-
-    <fieldset id="hanok_libre_de_hipoteca" class="hanok_radio_input">
-      <legend>¿La vivienda está libre de hipoteca?</legend>
-
-      <label for="libre_de_hipoteca_si">
-        <input type="radio" id="libre_de_hipoteca_si" name="hanok_libre_de_hipoteca" value="si">
-        <span>Sí</span>
-      </label>
-
-      <label for="libre_de_hipoteca_no">
-        <input type="radio" id="libre_de_hipoteca_no" name="hanok_libre_de_hipoteca" value="no">
-        <span>No</span>
-      </label>
-    </fieldset>
-
-    <fieldset id="hanok_viv_okupada" class="hanok_radio_input">
-      <legend>¿La vivienda está ocupada ilegalmente?</legend>
-
-      <label for="viv_okupada_si">
-        <input type="radio" id="viv_okupada_si" name="hanok_viv_okupada" value="si">
-        <span>Sí</span>
-      </label>
-
-      <label for="viv_okupada_no">
-        <input type="radio" id="viv_okupada_no" name="hanok_viv_okupada" value="no">
-        <span>No</span>
-      </label>
-    </fieldset>
-
-    <fieldset id="hanok_proceso_venta" class="hanok_radio_input">
-      <legend>¿Qué es lo que más te interesa en este proceso de venta?</legend>
-
-      <label for="proceso_venta_rapido">
-        <input type="radio" id="proceso_venta_rapido" name="hanok_proceso_venta" value="vender_rapido">
-        <span>Vender rápido</span>
-      </label>
-
-      <label for="proceso_venta_precio">
-        <input type="radio" id="proceso_venta_precio" name="hanok_proceso_venta" value="mejor_precio">
-        <span>Obtener el mejor precio</span>
-      </label>
-
-      <label for="proceso_venta_sencillo">
-        <input type="radio" id="proceso_venta_sencillo" name="hanok_proceso_venta" value="proceso_sencillo">
-        <span>Que el proceso sea sencillo</span>
-      </label>
-    </fieldset>
-
-    <fieldset id="hanok_canal_contacto" class="hanok_radio_input" hidden>
-      <legend>¿Cómo prefieres ser contactado?</legend>
-
-      <label for="canal_contacto_llamada">
-        <input type="radio" id="canal_contacto_llamada" name="hanok_canal_contacto" value="llamada">
-        <span>Llamada</span>
-      </label>
-
-      <label for="canal_contacto_whatsapp">
-        <input type="radio" id="canal_contacto_whatsapp" name="hanok_canal_contacto" value="whatsapp">
-        <span>WhatsApp</span>
-      </label>
-
-      <label for="canal_contacto_email">
-        <input type="radio" id="canal_contacto_email" name="hanok_canal_contacto" value="email">
-        <span>Email</span>
-      </label>
-    </fieldset>
-
-  </div>
-
-  <div id="form-paso-7" class="form-paso" data-meta-paso="Datos personales" hidden>
+  <div id="form-paso-5" class="form-paso" data-meta-paso="Datos personales" hidden>
 
     <label for="hanok_nombre_" id="hanok_nombre">
       Nombre:

@@ -46,11 +46,9 @@
 
 </div>
 
-
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
 
 <div id="form-paso-2" class="form-paso" data-meta-paso="Interés e info sobre el lead" hidden>
-
-
 
   <fieldset id="hanok_comprar_interes_zona" class="hanok_radio_input">
 
@@ -77,8 +75,6 @@
     </label>
 
   </fieldset>
-
-
 
   <fieldset id="hanok_comprar" class="hanok_radio_input">
 
@@ -126,8 +122,6 @@
 
   </fieldset>
 
-
-
   <fieldset id="hanok_hipoteca" class="hanok_radio_input" hidden>
 
     <legend>¿Tienes pensado solicitar una hipoteca?</legend>
@@ -154,8 +148,6 @@
 
   </fieldset>
 
-
-
   <fieldset id="hanok_tasacion_oficial" class="hanok_radio_input" hidden>
 
     <legend>¿Estás interesado en obtener una tasación oficial para este inmueble?</legend>
@@ -181,8 +173,6 @@
     </label>
 
   </fieldset>
-
-
 
   <fieldset id="hanok_2_viv_vender" class="hanok_radio_input" hidden>
 
@@ -213,12 +203,10 @@
 
 
 </div>
-
+<!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
 
 
 <div id="form-paso-3" class="form-paso" data-meta-paso="Tipo de inmueble y su estado" hidden>
-
-
 
   <label for="hanok_superficie_" id="hanok_superficie">
 
@@ -228,8 +216,53 @@
 
   </label>
 
+  
+  <fieldset id="hanok_tipo_vivienda" class="hanok_radio_input">
+
+    <legend>¿Qué tipo de vivienda es?</legend>
 
 
+
+    <label for="hanok_tipo_vivienda_piso">
+
+      <input type="radio" id="hanok_tipo_vivienda_piso" name="hanok_tipo_vivienda" value="piso">
+
+      <span>Piso</span>
+
+    </label>
+
+
+
+    <label for="hanok_tipo_vivienda_chalet_adosado">
+
+      <input type="radio" id="hanok_tipo_vivienda_chalet_adosado" name="hanok_tipo_vivienda" value="chalet_adosado">
+
+      <span>Chalet adosado</span>
+
+    </label>
+
+
+
+    <label for="hanok_tipo_vivienda_casa_independiente">
+
+      <input type="radio" id="hanok_tipo_vivienda_casa_independiente" name="hanok_tipo_vivienda" value="casa_independiente">
+
+      <span>Casa independiente</span>
+
+    </label>
+
+
+
+    <label for="hanok_tipo_vivienda_estudio">
+
+      <input type="radio" id="hanok_tipo_vivienda_estudio" name="hanok_tipo_vivienda" value="estudio">
+
+      <span>Estudio</span>
+
+    </label>
+
+  </fieldset>
+  
   <fieldset id="hanok_dormitorios" class="hanok_radio_input">
 
     <legend>¿Cuántos dormitorios tiene?</legend>
@@ -276,8 +309,6 @@
 
   </fieldset>
 
-
-
   <fieldset id="hanok_wc" class="hanok_radio_input">
 
     <legend>¿Cuántos baños?</legend>
@@ -312,93 +343,28 @@
 
     </label>
 
+
   </fieldset>
 
+  <fieldset id="hanok_viv_exterior" class="hanok_radio_input">
+      <legend>¿La vivienda es exterior?</legend>
 
+      <label for="viv_exterior_si">
+        <input type="radio" id="viv_exterior_si" name="hanok_viv_exterior" value="si">
+        <span>Sí</span>
+      </label>
+
+      <label for="viv_exterior_no">
+        <input type="radio" id="viv_exterior_no" name="hanok_viv_exterior" value="no">
+        <span>No</span>
+      </label>
+    </fieldset>
 
 </div>
 
-
+<!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
 
 <div id="form-paso-4" class="form-paso" data-meta-paso="Tipo de inmueble y su estado" hidden>
-
-
-
-  <fieldset id="hanok_tipo_vivienda" class="hanok_radio_input">
-
-    <legend>¿Cómo es la vivienda?</legend>
-
-
-
-    <label for="hanok_tipo_vivienda_piso">
-
-      <input type="radio" id="hanok_tipo_vivienda_piso" name="hanok_tipo_vivienda" value="piso">
-
-      <span>Piso</span>
-
-    </label>
-
-
-
-    <label for="hanok_tipo_vivienda_chalet_adosado">
-
-      <input type="radio" id="hanok_tipo_vivienda_chalet_adosado" name="hanok_tipo_vivienda" value="chalet_adosado">
-
-      <span>Chalet adosado</span>
-
-    </label>
-
-
-
-    <label for="hanok_tipo_vivienda_casa_independiente">
-
-      <input type="radio" id="hanok_tipo_vivienda_casa_independiente" name="hanok_tipo_vivienda" value="casa_independiente">
-
-      <span>Casa independiente</span>
-
-    </label>
-
-
-
-    <label for="hanok_tipo_vivienda_estudio">
-
-      <input type="radio" id="hanok_tipo_vivienda_estudio" name="hanok_tipo_vivienda" value="estudio">
-
-      <span>Estudio</span>
-
-    </label>
-
-  </fieldset>
-
-
-
-  <fieldset id="hanok_antiguedad_viv" class="hanok_radio_input" hidden>
-
-    <legend>¿Cuál es la antigüedad de la vivienda?</legend>
-
-
-
-    <label for="antiguedad_viv_nueva">
-
-      <input type="radio" id="antiguedad_viv_nueva" name="hanok_antiguedad_viv" value="nueva">
-
-      <span>Nueva construcción</span>
-
-    </label>
-
-
-
-    <label for="antiguedad_viv_segunda_mano">
-
-      <input type="radio" id="antiguedad_viv_segunda_mano" name="hanok_antiguedad_viv" value="segunda_mano">
-
-      <span>Vivienda de segunda mano</span>
-
-    </label>
-
-  </fieldset>
-
-
 
   <fieldset id="hanok_estado_inmueble" class="hanok_radio_input">
 
@@ -434,17 +400,8 @@
 
     </label>
 
+  
   </fieldset>
-
-
-
-</div>
-
-
-
-<div id="form-paso-5" class="form-paso" data-meta-paso="Tipo de inmueble y su estado" hidden>
-
-
 
   <fieldset id="hanok_viv_extras" class="hanok_radio_input">
 
@@ -471,8 +428,6 @@
     </label>
 
   </fieldset>
-
-
 
   <fieldset id="hanok_extras" class="hanok_check_group" hidden>
 
@@ -522,46 +477,6 @@
 
   </fieldset>
 
-
-
-  <fieldset id="hanok_cuando_comprar" class="hanok_radio_input" hidden>
-
-    <legend>¿Cuándo te gustaría comprar tu nueva vivienda?</legend>
-
-
-
-    <label for="cuando_comprar_ya">
-
-      <input type="radio" id="cuando_comprar_ya" name="hanok_cuando_comprar" value="ya">
-
-      <span>Cuanto antes</span>
-
-    </label>
-
-
-
-    <label for="cuando_comprar_3_6_m">
-
-      <input type="radio" id="cuando_comprar_3_6_m" name="hanok_cuando_comprar" value="3_6_meses">
-
-      <span>Entre 3 a 6 meses</span>
-
-    </label>
-
-
-
-    <label for="cuando_comprar_+6_m">
-
-      <input type="radio" id="cuando_comprar_+6_m" name="hanok_cuando_comprar" value="+6_meses">
-
-      <span>Más de 6 meses</span>
-
-    </label>
-
-  </fieldset>
-
-
-
   <fieldset id="hanok_interes_ahorro_suministros" class="hanok_radio_input">
 
     <legend>¿Estás interesado en ahorrar en tus facturas de suministros (agua, luz, gas, internet…)?</legend>
@@ -588,13 +503,13 @@
 
   </fieldset>
 
-
-
 </div>
 
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
+  <!-- %%%%%%%%%%%%% XXXXXXXXXXXXXXXXXXXXXXXXXXxxx %%%%%%%%%%%%%%%%%%%%%%%% -->
 
 
-<div id="form-paso-6" class="form-paso" data-meta-paso="Datos personales" hidden>
+<div id="form-paso-5" class="form-paso" data-meta-paso="Datos personales" hidden>
 
 
 
