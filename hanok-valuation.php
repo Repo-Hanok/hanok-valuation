@@ -3,11 +3,8 @@
 /**
 
  * Plugin Name: Hanok Valuation
-
  * Description: Un plugin para hacer valoraciones de precio en propiedades Real Estate en Valoración Vivienda
-
  * Version: 1.0.0
-
  * Author: Said
 
 */
@@ -19,13 +16,22 @@ define( 'HANOK_PLUGIN_PATH', plugin_dir_path( __FILE__ ) ); // ruta relativa par
 
 define( 'HANOK_PLUGIN_URL', plugin_dir_url( __FILE__ ) ); // ruta absoluta para 'enqueues' (navegador)
 
+// accesos
+define('CASSANDRA_URL', 'https://api.cassandra-ai.com/api/valuation/avm');
 
+define('CASSANDRA_KEY', 'IRxQYM6q1E2yH8S6L0AZAD6yaqWqxBgPiIeMbVFacSJXSTzelDv79sMiNTGO6S87l6k');
+
+define('ACTIVE_CAMPAIGN_URL', 'https://xpxfhvfx1l.execute-api.eu-west-3.amazonaws.com/mi-etapa/mi-recurso');
+
+define('AWS_URL_LEGACY', 'https://ne30b426id.execute-api.eu-west-3.amazonaws.com/vv-etapa-api');
 
 require_once HANOK_PLUGIN_PATH . 'includes/shortcode-form.php';
 
 require_once HANOK_PLUGIN_PATH . 'includes/shortcode-valoracion.php';
 
 require_once HANOK_PLUGIN_PATH . 'includes/process-form.php';
+
+require_once HANOK_PLUGIN_PATH . 'includes/helpers/valuation-utils.php';
 
 require_once HANOK_PLUGIN_PATH . 'includes/helpers/template.php';
 

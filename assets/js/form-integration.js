@@ -60,31 +60,30 @@ function initIntegration() {
     // VENDER (informe viejo)
         if (form.classList.contains('vender')) {
             /***
-             * 
+             *
              *  AQUÍ METER : INTERÉS = VENDER ...
              */
             console.log('vender')
             formData.hanok_interes = 'vender'
-            const oldApiData = adaptaDatosParaApiVieja(formData)
-            return oldApiData
+
         }
     // ALQUILAR (informe nuevo)
         else if (form.classList.contains('alquilar')) {
             console.log('alquilar')
             formData.hanok_interes = 'alquilar'
-            return formData
+
         }
     // COMPRAR (informe nuevo)
         else if (form.classList.contains('comprar')) {
             console.log('comprar')
             formData.hanok_interes = 'comprar'
-            return formData
+
         }
     // INFO (informe nuevo)
         else if (form.classList.contains('info')) {
             console.log('info')
             formData.hanok_interes = 'info'
-            return formData
+
         }
     // MAIN (ambos informes)
     console.log('main')
@@ -92,12 +91,9 @@ function initIntegration() {
     formData.hanok_motivo_info === "vender_medio_plazo" ||
     formData.hanok_motivo_info === "vender_futuro" ) {
 
-        const oldApiData = adaptaDatosParaApiVieja(formData)
-        return oldApiData
     }
+    return formData;
 
-    console.log(JSON.stringify(formData))
-    return formData
 }
 
 
@@ -144,80 +140,4 @@ function obtenerDatosForm() {
 
 
     return respuestasForm
-}
-
-// creo que esta función no hace nada (¿?)
-function adaptaDatosParaApiVieja(datos) {
-
-    const oldData = { // referencia para datos para la API vieja
-        "property_type_id": 4,
-    }
-
-    // sacamos las claves de los datos del form
-    const claves = Object.keys(datos)
-
-    // por cada clave, buscamos su equivalente
-    claves.forEach((k) => {
-        if (EQUIVALENCIAS_NUEVA_VIEJA[k]) {
-            oldData[EQUIVALENCIAS_NUEVA_VIEJA[k]] = datos[k]
-        }
-        else // si no tiene equivalente, lo añadimos tal cual (para que no se pierda nada que pueda ser útil en el futuro)
-            oldData[k] = datos[k]
-    })
-    console.log(JSON.stringify(oldData))
-
-    return oldData
-}
-
-
-/*
- * Tabla de equivalencias entre IDs de campos
- * "id_nuevo": "id_viejo"
-*/
-const EQUIVALENCIAS_NUEVA_VIEJA = {
-
-    /* datos personales */
-    "timestamp": "timestamp",
-    "url": "url",
-    "hanok_nombre": "client_name",
-    "hanok_email": "email",
-    "hanok_telefono": "phone_number",
-    "hanok_politicas": "consiente",
-
-
-    /* datos geográficos */
-    "lat": "latitude",
-    "lng": "longitude",
-    "comunidad": "comunidad",
-    "provincia": "provincia",
-    "cp": "codigo_postal",
-    "calle": "calle",
-    "num": "num",
-    "ciudad": "ciudad",
-
-
-    /* datos lead */
-    "hanok_interes": "interes",
-    "hanok_comprar": "residencia",
-    "hanok_hipoteca": "hipoteca",
-    "hanok_2_viv_vender": "vender_primera",
-    "hanok_gesvalt": "gesvalt",
-    "hanok_cuando_vender": "tiempo_venta",
-    "hanok_motivo_info": "porque_info",
-    "hanok_donde_casa_anunciada": "donde_anunciada",
-    "hanok_venta_exclusiva": "exclusiva",
-    "hanok_exclusiva_cuantos_meses": "meses_exclusiva",
-    "hanok_motivo_vender": "motivo_vender",
-    "hanok_motivo_3m": "espera_3_meses",
-    "hanok_mot_6m": "espera_6_meses",
-
-
-    /* datos inmueble */
-    "hanok_tipo_vivienda": "property_type",
-    "hanok_estado_inmueble": "estado_inmueble",
-    "hanok_reforma": "reforma",
-    "hanok_superficie": "area",
-    "hanok_dormitorios": "n_rooms",
-    "hanok_wc": "n_baths",
-    "hanok_precio_esperado": "precio_venta_deseado",
 }
