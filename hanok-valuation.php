@@ -9,7 +9,12 @@
 
 */
 
-
+/**
+ * archivo principal del plugin:
+ * - definimos las rutas de acceso a las APIs
+ * - incluimos los archivos necesarios para el funcionamiento del plugin
+ * - registramos los shortcodes
+ */
 
 // constantes
 define( 'HANOK_PLUGIN_PATH', plugin_dir_path( __FILE__ ) ); // ruta relativa para 'includes' (servidor)

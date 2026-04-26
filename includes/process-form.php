@@ -1,4 +1,11 @@
 <?php
+/**
+ * procesamiento del formulariode valoración:
+ * - registro de la ruta REST para recibir los datos
+ * - verificación de nonce
+ * - decisión de qué tipo de informe crear (API nueva o API vieja)
+ * - generación de informe
+ */
 
 // field map para enviarle datos a nuestra API clasica de AWS
 // que espera campos con nombres específicos
@@ -195,13 +202,13 @@ function hanok_process_new_api($data) {
 
     $aux_data = [
 
-        'calle' => $data['calle'].' '. $data['num'].', '.$data['ciudad'],
-        'area' => floatval($data['hanok_superficie']),
-        'latitude' => floatval($data['lat']),
-        'longitude' => floatval($data['lng']),
-        'nombre' => $data['hanok_nombre'],
-        'dormitorios' => floatval($data['hanok_dormitorios']),
-        'wc' => floatval($data['hanok_wc']),
+        'calle'       => $data['calle'].' '. $data['num'].', '.$data['ciudad'],
+        'area'        => floatval($data['hanok_superficie']),
+        'latitude'    => floatval($data['lat']),
+        'longitude'   => floatval($data['lng']),
+        'nombre'      => $data['hanok_nombre'],
+        'dormitorios' => $data['hanok_dormitorios'] ?? null,
+        'wc'          => $data['hanok_wc'] ?? null,
         'operation_type_id' => $tipo_operacion
 
     ];

@@ -1,6 +1,11 @@
 <?php
 
-// callback para el shortcode del formulario -> añade scripts y estilos y también la plantilla
+/**
+ * callback para el shortcode del formulario de valoración:
+ * - añade los scripts y estilos necesarios para el frontend
+ * - genera el nonce para validación de seguridad
+ * - renderiza la plantilla del formulario
+ */
 function hanok_callback_form_valoracion($atts) {
 
     // Leer atributos del shortcode

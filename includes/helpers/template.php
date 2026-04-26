@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Archivo de utilidad para renderizar plantillas:
+ */
 
 function hanok_render($template, array $vars = []) {
 

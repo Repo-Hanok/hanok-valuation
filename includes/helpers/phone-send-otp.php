@@ -78,6 +78,7 @@ function hanok_phone_init(WP_REST_Request $req) {
 
   }
 
+  // PARA PRUEBAS: eliminar bloqueo previo para este teléfono
   delete_site_transient('hanok_phone_' . md5('722312303'));
 
 
